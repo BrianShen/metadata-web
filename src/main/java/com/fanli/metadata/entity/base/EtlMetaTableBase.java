@@ -9,7 +9,11 @@ public class EtlMetaTableBase {
 
     private String tableName;
 
+    private String domain;
+
     private String db;
+
+    private String schema;
 
     private String storageType;
 
@@ -63,12 +67,28 @@ public class EtlMetaTableBase {
         this.tableName = tableName == null ? null : tableName.trim();
     }
 
+    public String getDomain() {
+        return domain;
+    }
+
+    public void setDomain(String domain) {
+        this.domain = domain == null ? null : domain.trim();
+    }
+
     public String getDb() {
         return db;
     }
 
     public void setDb(String db) {
         this.db = db == null ? null : db.trim();
+    }
+
+    public String getSchema() {
+        return schema;
+    }
+
+    public void setSchema(String schema) {
+        this.schema = schema == null ? null : schema.trim();
     }
 
     public String getStorageType() {

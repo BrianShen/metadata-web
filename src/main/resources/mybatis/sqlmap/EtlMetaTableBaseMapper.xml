@@ -1,47 +1,49 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.fanli.metadata.dao.base.EtlMetaTableBaseMapper" >
-  <resultMap id="BaseResultMap" type="com.fanli.metadata.entity.base.EtlMetaTableBase" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="job_id" property="jobId" jdbcType="INTEGER" />
-    <result column="table_name" property="tableName" jdbcType="VARCHAR" />
-    <result column="db" property="db" jdbcType="VARCHAR" />
-    <result column="storage_type" property="storageType" jdbcType="VARCHAR" />
-    <result column="developer" property="developer" jdbcType="VARCHAR" />
-    <result column="owner" property="owner" jdbcType="VARCHAR" />
-    <result column="task_status" property="taskStatus" jdbcType="INTEGER" />
-    <result column="refresh_type" property="refreshType" jdbcType="VARCHAR" />
-    <result column="refresh_offset" property="refreshOffset" jdbcType="VARCHAR" />
-    <result column="refresh_cycle" property="refreshCycle" jdbcType="VARCHAR" />
-    <result column="status" property="status" jdbcType="TINYINT" />
-    <result column="is_partition_table" property="isPartitionTable" jdbcType="TINYINT" />
-    <result column="data_last_refresh_time" property="dataLastRefreshTime" jdbcType="TIMESTAMP" />
-    <result column="table_access_code" property="tableAccessCode" jdbcType="INTEGER" />
-    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fanli.metadata.dao.base.EtlMetaTableBaseMapper">
+  <resultMap id="BaseResultMap" type="com.fanli.metadata.entity.base.EtlMetaTableBase">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="job_id" jdbcType="INTEGER" property="jobId" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="domain" jdbcType="VARCHAR" property="domain" />
+    <result column="db" jdbcType="VARCHAR" property="db" />
+    <result column="schema" jdbcType="VARCHAR" property="schema" />
+    <result column="storage_type" jdbcType="VARCHAR" property="storageType" />
+    <result column="developer" jdbcType="VARCHAR" property="developer" />
+    <result column="owner" jdbcType="VARCHAR" property="owner" />
+    <result column="task_status" jdbcType="INTEGER" property="taskStatus" />
+    <result column="refresh_type" jdbcType="VARCHAR" property="refreshType" />
+    <result column="refresh_offset" jdbcType="VARCHAR" property="refreshOffset" />
+    <result column="refresh_cycle" jdbcType="VARCHAR" property="refreshCycle" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="is_partition_table" jdbcType="TINYINT" property="isPartitionTable" />
+    <result column="data_last_refresh_time" jdbcType="TIMESTAMP" property="dataLastRefreshTime" />
+    <result column="table_access_code" jdbcType="INTEGER" property="tableAccessCode" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.fanli.metadata.entity.base.EtlMetaTableBase" extends="BaseResultMap" >
-    <result column="table_comment" property="tableComment" jdbcType="LONGVARCHAR" />
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.fanli.metadata.entity.base.EtlMetaTableBase">
+    <result column="table_comment" jdbcType="LONGVARCHAR" property="tableComment" />
   </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -52,25 +54,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -81,45 +83,45 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List" >
-    id, job_id, table_name, db, storage_type, developer, owner, task_status, refresh_type, 
-    refresh_offset, refresh_cycle, status, is_partition_table, data_last_refresh_time, 
+  <sql id="Base_Column_List">
+    id, job_id, table_name, domain, db, schema, storage_type, developer, owner, task_status, 
+    refresh_type, refresh_offset, refresh_cycle, status, is_partition_table, data_last_refresh_time, 
     table_access_code, add_time, update_time
   </sql>
-  <sql id="Blob_Column_List" >
+  <sql id="Blob_Column_List">
     table_comment
   </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBaseExample" >
+  <select id="selectByExampleWithBLOBs" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBaseExample" resultMap="ResultMapWithBLOBs">
     select
-    <if test="distinct" >
+    <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
     from etl_meta_table_base
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null" >
+    <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBaseExample" >
+  <select id="selectByExample" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBaseExample" resultMap="BaseResultMap">
     select
-    <if test="distinct" >
+    <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
     from etl_meta_table_base
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null" >
+    <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
     ,
@@ -127,17 +129,531 @@
     from etl_meta_table_base
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from etl_meta_table_base
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBaseExample" >
+  <delete id="deleteByExample" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBaseExample">
     delete from etl_meta_table_base
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBase" >
+  <insert id="insert" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBase">
+    insert into etl_meta_table_base (id, job_id, table_name, 
+      domain, db, schema, 
+      storage_type, developer, owner, 
+      task_status, refresh_type, refresh_offset, 
+      refresh_cycle, status, is_partition_table, 
+      data_last_refresh_time, table_access_code, 
+      add_time, update_time, table_comment
+      )
+    values (#{id,jdbcType=INTEGER}, #{jobId,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, 
+      #{domain,jdbcType=VARCHAR}, #{db,jdbcType=VARCHAR}, #{schema,jdbcType=VARCHAR}, 
+      #{storageType,jdbcType=VARCHAR}, #{developer,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR}, 
+      #{taskStatus,jdbcType=INTEGER}, #{refreshType,jdbcType=VARCHAR}, #{refreshOffset,jdbcType=VARCHAR}, 
+      #{refreshCycle,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{isPartitionTable,jdbcType=TINYINT}, 
+      #{dataLastRefreshTime,jdbcType=TIMESTAMP}, #{tableAccessCode,jdbcType=INTEGER}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{tableComment,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBase">
+    insert into etl_meta_table_base
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="jobId != null">
+        job_id,
+      </if>
+      <if test="tableName != null">
+        table_name,
+      </if>
+      <if test="domain != null">
+        domain,
+      </if>
+      <if test="db != null">
+        db,
+      </if>
+      <if test="schema != null">
+        schema,
+      </if>
+      <if test="storageType != null">
+        storage_type,
+      </if>
+      <if test="developer != null">
+        developer,
+      </if>
+      <if test="owner != null">
+        owner,
+      </if>
+      <if test="taskStatus != null">
+        task_status,
+      </if>
+      <if test="refreshType != null">
+        refresh_type,
+      </if>
+      <if test="refreshOffset != null">
+        refresh_offset,
+      </if>
+      <if test="refreshCycle != null">
+        refresh_cycle,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="isPartitionTable != null">
+        is_partition_table,
+      </if>
+      <if test="dataLastRefreshTime != null">
+        data_last_refresh_time,
+      </if>
+      <if test="tableAccessCode != null">
+        table_access_code,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="tableComment != null">
+        table_comment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="jobId != null">
+        #{jobId,jdbcType=INTEGER},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="domain != null">
+        #{domain,jdbcType=VARCHAR},
+      </if>
+      <if test="db != null">
+        #{db,jdbcType=VARCHAR},
+      </if>
+      <if test="schema != null">
+        #{schema,jdbcType=VARCHAR},
+      </if>
+      <if test="storageType != null">
+        #{storageType,jdbcType=VARCHAR},
+      </if>
+      <if test="developer != null">
+        #{developer,jdbcType=VARCHAR},
+      </if>
+      <if test="owner != null">
+        #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="taskStatus != null">
+        #{taskStatus,jdbcType=INTEGER},
+      </if>
+      <if test="refreshType != null">
+        #{refreshType,jdbcType=VARCHAR},
+      </if>
+      <if test="refreshOffset != null">
+        #{refreshOffset,jdbcType=VARCHAR},
+      </if>
+      <if test="refreshCycle != null">
+        #{refreshCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isPartitionTable != null">
+        #{isPartitionTable,jdbcType=TINYINT},
+      </if>
+      <if test="dataLastRefreshTime != null">
+        #{dataLastRefreshTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tableAccessCode != null">
+        #{tableAccessCode,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tableComment != null">
+        #{tableComment,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBaseExample" resultType="java.lang.Integer">
+    select count(*) from etl_meta_table_base
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update etl_meta_table_base
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.jobId != null">
+        job_id = #{record.jobId,jdbcType=INTEGER},
+      </if>
+      <if test="record.tableName != null">
+        table_name = #{record.tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.domain != null">
+        domain = #{record.domain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.db != null">
+        db = #{record.db,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schema != null">
+        schema = #{record.schema,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storageType != null">
+        storage_type = #{record.storageType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.developer != null">
+        developer = #{record.developer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.owner != null">
+        owner = #{record.owner,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskStatus != null">
+        task_status = #{record.taskStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.refreshType != null">
+        refresh_type = #{record.refreshType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refreshOffset != null">
+        refresh_offset = #{record.refreshOffset,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refreshCycle != null">
+        refresh_cycle = #{record.refreshCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.isPartitionTable != null">
+        is_partition_table = #{record.isPartitionTable,jdbcType=TINYINT},
+      </if>
+      <if test="record.dataLastRefreshTime != null">
+        data_last_refresh_time = #{record.dataLastRefreshTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tableAccessCode != null">
+        table_access_code = #{record.tableAccessCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.addTime != null">
+        add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tableComment != null">
+        table_comment = #{record.tableComment,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update etl_meta_table_base
+    set id = #{record.id,jdbcType=INTEGER},
+      job_id = #{record.jobId,jdbcType=INTEGER},
+      table_name = #{record.tableName,jdbcType=VARCHAR},
+      domain = #{record.domain,jdbcType=VARCHAR},
+      db = #{record.db,jdbcType=VARCHAR},
+      schema = #{record.schema,jdbcType=VARCHAR},
+      storage_type = #{record.storageType,jdbcType=VARCHAR},
+      developer = #{record.developer,jdbcType=VARCHAR},
+      owner = #{record.owner,jdbcType=VARCHAR},
+      task_status = #{record.taskStatus,jdbcType=INTEGER},
+      refresh_type = #{record.refreshType,jdbcType=VARCHAR},
+      refresh_offset = #{record.refreshOffset,jdbcType=VARCHAR},
+      refresh_cycle = #{record.refreshCycle,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      is_partition_table = #{record.isPartitionTable,jdbcType=TINYINT},
+      data_last_refresh_time = #{record.dataLastRefreshTime,jdbcType=TIMESTAMP},
+      table_access_code = #{record.tableAccessCode,jdbcType=INTEGER},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      table_comment = #{record.tableComment,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update etl_meta_table_base
+    set id = #{record.id,jdbcType=INTEGER},
+      job_id = #{record.jobId,jdbcType=INTEGER},
+      table_name = #{record.tableName,jdbcType=VARCHAR},
+      domain = #{record.domain,jdbcType=VARCHAR},
+      db = #{record.db,jdbcType=VARCHAR},
+      schema = #{record.schema,jdbcType=VARCHAR},
+      storage_type = #{record.storageType,jdbcType=VARCHAR},
+      developer = #{record.developer,jdbcType=VARCHAR},
+      owner = #{record.owner,jdbcType=VARCHAR},
+      task_status = #{record.taskStatus,jdbcType=INTEGER},
+      refresh_type = #{record.refreshType,jdbcType=VARCHAR},
+      refresh_offset = #{record.refreshOffset,jdbcType=VARCHAR},
+      refresh_cycle = #{record.refreshCycle,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      is_partition_table = #{record.isPartitionTable,jdbcType=TINYINT},
+      data_last_refresh_time = #{record.dataLastRefreshTime,jdbcType=TIMESTAMP},
+      table_access_code = #{record.tableAccessCode,jdbcType=INTEGER},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBase">
+    update etl_meta_table_base
+    <set>
+      <if test="jobId != null">
+        job_id = #{jobId,jdbcType=INTEGER},
+      </if>
+      <if test="tableName != null">
+        table_name = #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="domain != null">
+        domain = #{domain,jdbcType=VARCHAR},
+      </if>
+      <if test="db != null">
+        db = #{db,jdbcType=VARCHAR},
+      </if>
+      <if test="schema != null">
+        schema = #{schema,jdbcType=VARCHAR},
+      </if>
+      <if test="storageType != null">
+        storage_type = #{storageType,jdbcType=VARCHAR},
+      </if>
+      <if test="developer != null">
+        developer = #{developer,jdbcType=VARCHAR},
+      </if>
+      <if test="owner != null">
+        owner = #{owner,jdbcType=VARCHAR},
+      </if>
+      <if test="taskStatus != null">
+        task_status = #{taskStatus,jdbcType=INTEGER},
+      </if>
+      <if test="refreshType != null">
+        refresh_type = #{refreshType,jdbcType=VARCHAR},
+      </if>
+      <if test="refreshOffset != null">
+        refresh_offset = #{refreshOffset,jdbcType=VARCHAR},
+      </if>
+      <if test="refreshCycle != null">
+        refresh_cycle = #{refreshCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isPartitionTable != null">
+        is_partition_table = #{isPartitionTable,jdbcType=TINYINT},
+      </if>
+      <if test="dataLastRefreshTime != null">
+        data_last_refresh_time = #{dataLastRefreshTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tableAccessCode != null">
+        table_access_code = #{tableAccessCode,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tableComment != null">
+        table_comment = #{tableComment,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBase">
+    update etl_meta_table_base
+    set job_id = #{jobId,jdbcType=INTEGER},
+      table_name = #{tableName,jdbcType=VARCHAR},
+      domain = #{domain,jdbcType=VARCHAR},
+      db = #{db,jdbcType=VARCHAR},
+      schema = #{schema,jdbcType=VARCHAR},
+      storage_type = #{storageType,jdbcType=VARCHAR},
+      developer = #{developer,jdbcType=VARCHAR},
+      owner = #{owner,jdbcType=VARCHAR},
+      task_status = #{taskStatus,jdbcType=INTEGER},
+      refresh_type = #{refreshType,jdbcType=VARCHAR},
+      refresh_offset = #{refreshOffset,jdbcType=VARCHAR},
+      refresh_cycle = #{refreshCycle,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      is_partition_table = #{isPartitionTable,jdbcType=TINYINT},
+      data_last_refresh_time = #{dataLastRefreshTime,jdbcType=TIMESTAMP},
+      table_access_code = #{tableAccessCode,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      table_comment = #{tableComment,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBase">
+    update etl_meta_table_base
+    set job_id = #{jobId,jdbcType=INTEGER},
+      table_name = #{tableName,jdbcType=VARCHAR},
+      domain = #{domain,jdbcType=VARCHAR},
+      db = #{db,jdbcType=VARCHAR},
+      schema = #{schema,jdbcType=VARCHAR},
+      storage_type = #{storageType,jdbcType=VARCHAR},
+      developer = #{developer,jdbcType=VARCHAR},
+      owner = #{owner,jdbcType=VARCHAR},
+      task_status = #{taskStatus,jdbcType=INTEGER},
+      refresh_type = #{refreshType,jdbcType=VARCHAR},
+      refresh_offset = #{refreshOffset,jdbcType=VARCHAR},
+      refresh_cycle = #{refreshCycle,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      is_partition_table = #{isPartitionTable,jdbcType=TINYINT},
+      data_last_refresh_time = #{dataLastRefreshTime,jdbcType=TIMESTAMP},
+      table_access_code = #{tableAccessCode,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.fanli.metadata.entity.base.EtlMetaTableBase">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="job_id" jdbcType="INTEGER" property="jobId" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="db" jdbcType="VARCHAR" property="db" />
+    <result column="storage_type" jdbcType="VARCHAR" property="storageType" />
+    <result column="developer" jdbcType="VARCHAR" property="developer" />
+    <result column="owner" jdbcType="VARCHAR" property="owner" />
+    <result column="task_status" jdbcType="INTEGER" property="taskStatus" />
+    <result column="refresh_type" jdbcType="VARCHAR" property="refreshType" />
+    <result column="refresh_offset" jdbcType="VARCHAR" property="refreshOffset" />
+    <result column="refresh_cycle" jdbcType="VARCHAR" property="refreshCycle" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="is_partition_table" jdbcType="TINYINT" property="isPartitionTable" />
+    <result column="data_last_refresh_time" jdbcType="TIMESTAMP" property="dataLastRefreshTime" />
+    <result column="table_access_code" jdbcType="INTEGER" property="tableAccessCode" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.fanli.metadata.entity.base.EtlMetaTableBase">
+    <result column="table_comment" jdbcType="LONGVARCHAR" property="tableComment" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, job_id, table_name, db, storage_type, developer, owner, task_status, refresh_type, 
+    refresh_offset, refresh_cycle, status, is_partition_table, data_last_refresh_time, 
+    table_access_code, add_time, update_time
+  </sql>
+  <sql id="Blob_Column_List">
+    table_comment
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBaseExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from etl_meta_table_base
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBaseExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from etl_meta_table_base
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from etl_meta_table_base
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from etl_meta_table_base
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBaseExample">
+    delete from etl_meta_table_base
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBase">
     insert into etl_meta_table_base (id, job_id, table_name, 
       db, storage_type, developer, 
       owner, task_status, refresh_type, 
@@ -153,190 +669,190 @@
       #{tableAccessCode,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{tableComment,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBase" >
+  <insert id="insertSelective" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBase">
     insert into etl_meta_table_base
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="jobId != null" >
+      <if test="jobId != null">
         job_id,
       </if>
-      <if test="tableName != null" >
+      <if test="tableName != null">
         table_name,
       </if>
-      <if test="db != null" >
+      <if test="db != null">
         db,
       </if>
-      <if test="storageType != null" >
+      <if test="storageType != null">
         storage_type,
       </if>
-      <if test="developer != null" >
+      <if test="developer != null">
         developer,
       </if>
-      <if test="owner != null" >
+      <if test="owner != null">
         owner,
       </if>
-      <if test="taskStatus != null" >
+      <if test="taskStatus != null">
         task_status,
       </if>
-      <if test="refreshType != null" >
+      <if test="refreshType != null">
         refresh_type,
       </if>
-      <if test="refreshOffset != null" >
+      <if test="refreshOffset != null">
         refresh_offset,
       </if>
-      <if test="refreshCycle != null" >
+      <if test="refreshCycle != null">
         refresh_cycle,
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         status,
       </if>
-      <if test="isPartitionTable != null" >
+      <if test="isPartitionTable != null">
         is_partition_table,
       </if>
-      <if test="dataLastRefreshTime != null" >
+      <if test="dataLastRefreshTime != null">
         data_last_refresh_time,
       </if>
-      <if test="tableAccessCode != null" >
+      <if test="tableAccessCode != null">
         table_access_code,
       </if>
-      <if test="addTime != null" >
+      <if test="addTime != null">
         add_time,
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         update_time,
       </if>
-      <if test="tableComment != null" >
+      <if test="tableComment != null">
         table_comment,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="jobId != null" >
+      <if test="jobId != null">
         #{jobId,jdbcType=INTEGER},
       </if>
-      <if test="tableName != null" >
+      <if test="tableName != null">
         #{tableName,jdbcType=VARCHAR},
       </if>
-      <if test="db != null" >
+      <if test="db != null">
         #{db,jdbcType=VARCHAR},
       </if>
-      <if test="storageType != null" >
+      <if test="storageType != null">
         #{storageType,jdbcType=VARCHAR},
       </if>
-      <if test="developer != null" >
+      <if test="developer != null">
         #{developer,jdbcType=VARCHAR},
       </if>
-      <if test="owner != null" >
+      <if test="owner != null">
         #{owner,jdbcType=VARCHAR},
       </if>
-      <if test="taskStatus != null" >
+      <if test="taskStatus != null">
         #{taskStatus,jdbcType=INTEGER},
       </if>
-      <if test="refreshType != null" >
+      <if test="refreshType != null">
         #{refreshType,jdbcType=VARCHAR},
       </if>
-      <if test="refreshOffset != null" >
+      <if test="refreshOffset != null">
         #{refreshOffset,jdbcType=VARCHAR},
       </if>
-      <if test="refreshCycle != null" >
+      <if test="refreshCycle != null">
         #{refreshCycle,jdbcType=VARCHAR},
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         #{status,jdbcType=TINYINT},
       </if>
-      <if test="isPartitionTable != null" >
+      <if test="isPartitionTable != null">
         #{isPartitionTable,jdbcType=TINYINT},
       </if>
-      <if test="dataLastRefreshTime != null" >
+      <if test="dataLastRefreshTime != null">
         #{dataLastRefreshTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="tableAccessCode != null" >
+      <if test="tableAccessCode != null">
         #{tableAccessCode,jdbcType=INTEGER},
       </if>
-      <if test="addTime != null" >
+      <if test="addTime != null">
         #{addTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="tableComment != null" >
+      <if test="tableComment != null">
         #{tableComment,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBaseExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBaseExample" resultType="java.lang.Integer">
     select count(*) from etl_meta_table_base
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
+  <update id="updateByExampleSelective" parameterType="map">
     update etl_meta_table_base
-    <set >
-      <if test="record.id != null" >
+    <set>
+      <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.jobId != null" >
+      <if test="record.jobId != null">
         job_id = #{record.jobId,jdbcType=INTEGER},
       </if>
-      <if test="record.tableName != null" >
+      <if test="record.tableName != null">
         table_name = #{record.tableName,jdbcType=VARCHAR},
       </if>
-      <if test="record.db != null" >
+      <if test="record.db != null">
         db = #{record.db,jdbcType=VARCHAR},
       </if>
-      <if test="record.storageType != null" >
+      <if test="record.storageType != null">
         storage_type = #{record.storageType,jdbcType=VARCHAR},
       </if>
-      <if test="record.developer != null" >
+      <if test="record.developer != null">
         developer = #{record.developer,jdbcType=VARCHAR},
       </if>
-      <if test="record.owner != null" >
+      <if test="record.owner != null">
         owner = #{record.owner,jdbcType=VARCHAR},
       </if>
-      <if test="record.taskStatus != null" >
+      <if test="record.taskStatus != null">
         task_status = #{record.taskStatus,jdbcType=INTEGER},
       </if>
-      <if test="record.refreshType != null" >
+      <if test="record.refreshType != null">
         refresh_type = #{record.refreshType,jdbcType=VARCHAR},
       </if>
-      <if test="record.refreshOffset != null" >
+      <if test="record.refreshOffset != null">
         refresh_offset = #{record.refreshOffset,jdbcType=VARCHAR},
       </if>
-      <if test="record.refreshCycle != null" >
+      <if test="record.refreshCycle != null">
         refresh_cycle = #{record.refreshCycle,jdbcType=VARCHAR},
       </if>
-      <if test="record.status != null" >
+      <if test="record.status != null">
         status = #{record.status,jdbcType=TINYINT},
       </if>
-      <if test="record.isPartitionTable != null" >
+      <if test="record.isPartitionTable != null">
         is_partition_table = #{record.isPartitionTable,jdbcType=TINYINT},
       </if>
-      <if test="record.dataLastRefreshTime != null" >
+      <if test="record.dataLastRefreshTime != null">
         data_last_refresh_time = #{record.dataLastRefreshTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.tableAccessCode != null" >
+      <if test="record.tableAccessCode != null">
         table_access_code = #{record.tableAccessCode,jdbcType=INTEGER},
       </if>
-      <if test="record.addTime != null" >
+      <if test="record.addTime != null">
         add_time = #{record.addTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.updateTime != null" >
+      <if test="record.updateTime != null">
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.tableComment != null" >
+      <if test="record.tableComment != null">
         table_comment = #{record.tableComment,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
+  <update id="updateByExampleWithBLOBs" parameterType="map">
     update etl_meta_table_base
     set id = #{record.id,jdbcType=INTEGER},
       job_id = #{record.jobId,jdbcType=INTEGER},
@@ -356,11 +872,11 @@
       add_time = #{record.addTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       table_comment = #{record.tableComment,jdbcType=LONGVARCHAR}
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map" >
+  <update id="updateByExample" parameterType="map">
     update etl_meta_table_base
     set id = #{record.id,jdbcType=INTEGER},
       job_id = #{record.jobId,jdbcType=INTEGER},
@@ -379,68 +895,68 @@
       table_access_code = #{record.tableAccessCode,jdbcType=INTEGER},
       add_time = #{record.addTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP}
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBase" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBase">
     update etl_meta_table_base
-    <set >
-      <if test="jobId != null" >
+    <set>
+      <if test="jobId != null">
         job_id = #{jobId,jdbcType=INTEGER},
       </if>
-      <if test="tableName != null" >
+      <if test="tableName != null">
         table_name = #{tableName,jdbcType=VARCHAR},
       </if>
-      <if test="db != null" >
+      <if test="db != null">
         db = #{db,jdbcType=VARCHAR},
       </if>
-      <if test="storageType != null" >
+      <if test="storageType != null">
         storage_type = #{storageType,jdbcType=VARCHAR},
       </if>
-      <if test="developer != null" >
+      <if test="developer != null">
         developer = #{developer,jdbcType=VARCHAR},
       </if>
-      <if test="owner != null" >
+      <if test="owner != null">
         owner = #{owner,jdbcType=VARCHAR},
       </if>
-      <if test="taskStatus != null" >
+      <if test="taskStatus != null">
         task_status = #{taskStatus,jdbcType=INTEGER},
       </if>
-      <if test="refreshType != null" >
+      <if test="refreshType != null">
         refresh_type = #{refreshType,jdbcType=VARCHAR},
       </if>
-      <if test="refreshOffset != null" >
+      <if test="refreshOffset != null">
         refresh_offset = #{refreshOffset,jdbcType=VARCHAR},
       </if>
-      <if test="refreshCycle != null" >
+      <if test="refreshCycle != null">
         refresh_cycle = #{refreshCycle,jdbcType=VARCHAR},
       </if>
-      <if test="status != null" >
+      <if test="status != null">
         status = #{status,jdbcType=TINYINT},
       </if>
-      <if test="isPartitionTable != null" >
+      <if test="isPartitionTable != null">
         is_partition_table = #{isPartitionTable,jdbcType=TINYINT},
       </if>
-      <if test="dataLastRefreshTime != null" >
+      <if test="dataLastRefreshTime != null">
         data_last_refresh_time = #{dataLastRefreshTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="tableAccessCode != null" >
+      <if test="tableAccessCode != null">
         table_access_code = #{tableAccessCode,jdbcType=INTEGER},
       </if>
-      <if test="addTime != null" >
+      <if test="addTime != null">
         add_time = #{addTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="tableComment != null" >
+      <if test="tableComment != null">
         table_comment = #{tableComment,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBase" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBase">
     update etl_meta_table_base
     set job_id = #{jobId,jdbcType=INTEGER},
       table_name = #{tableName,jdbcType=VARCHAR},
@@ -461,7 +977,7 @@
       table_comment = #{tableComment,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBase" >
+  <update id="updateByPrimaryKey" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBase">
     update etl_meta_table_base
     set job_id = #{jobId,jdbcType=INTEGER},
       table_name = #{tableName,jdbcType=VARCHAR},

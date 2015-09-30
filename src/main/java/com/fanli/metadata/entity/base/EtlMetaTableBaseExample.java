@@ -295,6 +295,76 @@ public class EtlMetaTableBaseExample {
             return (Criteria) this;
         }
 
+        public Criteria andDomainIsNull() {
+            addCriterion("domain is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainIsNotNull() {
+            addCriterion("domain is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainEqualTo(String value) {
+            addCriterion("domain =", value, "domain");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNotEqualTo(String value) {
+            addCriterion("domain <>", value, "domain");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainGreaterThan(String value) {
+            addCriterion("domain >", value, "domain");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainGreaterThanOrEqualTo(String value) {
+            addCriterion("domain >=", value, "domain");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainLessThan(String value) {
+            addCriterion("domain <", value, "domain");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainLessThanOrEqualTo(String value) {
+            addCriterion("domain <=", value, "domain");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainLike(String value) {
+            addCriterion("domain like", value, "domain");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNotLike(String value) {
+            addCriterion("domain not like", value, "domain");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainIn(List<String> values) {
+            addCriterion("domain in", values, "domain");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNotIn(List<String> values) {
+            addCriterion("domain not in", values, "domain");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainBetween(String value1, String value2) {
+            addCriterion("domain between", value1, value2, "domain");
+            return (Criteria) this;
+        }
+
+        public Criteria andDomainNotBetween(String value1, String value2) {
+            addCriterion("domain not between", value1, value2, "domain");
+            return (Criteria) this;
+        }
+
         public Criteria andDbIsNull() {
             addCriterion("db is null");
             return (Criteria) this;
@@ -362,6 +432,76 @@ public class EtlMetaTableBaseExample {
 
         public Criteria andDbNotBetween(String value1, String value2) {
             addCriterion("db not between", value1, value2, "db");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchemaIsNull() {
+            addCriterion("schema is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchemaIsNotNull() {
+            addCriterion("schema is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchemaEqualTo(String value) {
+            addCriterion("schema =", value, "schema");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchemaNotEqualTo(String value) {
+            addCriterion("schema <>", value, "schema");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchemaGreaterThan(String value) {
+            addCriterion("schema >", value, "schema");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchemaGreaterThanOrEqualTo(String value) {
+            addCriterion("schema >=", value, "schema");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchemaLessThan(String value) {
+            addCriterion("schema <", value, "schema");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchemaLessThanOrEqualTo(String value) {
+            addCriterion("schema <=", value, "schema");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchemaLike(String value) {
+            addCriterion("schema like", value, "schema");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchemaNotLike(String value) {
+            addCriterion("schema not like", value, "schema");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchemaIn(List<String> values) {
+            addCriterion("schema in", values, "schema");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchemaNotIn(List<String> values) {
+            addCriterion("schema not in", values, "schema");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchemaBetween(String value1, String value2) {
+            addCriterion("schema between", value1, value2, "schema");
+            return (Criteria) this;
+        }
+
+        public Criteria andSchemaNotBetween(String value1, String value2) {
+            addCriterion("schema not between", value1, value2, "schema");
             return (Criteria) this;
         }
 
