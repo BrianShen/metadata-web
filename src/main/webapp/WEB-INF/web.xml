@@ -1,7 +1,7 @@
 <web-app version="2.4"
 		 xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
-	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+		 xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee">
+<!--删除了http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd 否则会报错 param element param-name is not allowed here-->
 
 	<display-name>Spring MVC Application</display-name>
 
@@ -10,22 +10,30 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:springmvc/mvc-dispatcher-servlet.xml</param-value>
+			<param-value>classpath*:springmvc/mvc-dispatcher-servlet.xml</param-value>
 		</init-param>
-        <load-on-startup>1</load-on-startup>
+		<!-- 何时启动  大于0的值表示容器启动时初始化此servlet，正值越小优先级越高-->
+		<load-on-startup>1</load-on-startup>
 	</servlet>
+
+	<!--<listener>-->
+	<!--<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>-->
+	<!--</listener>-->
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring/applicationContext-*.xml</param-value>
+		<param-value>classpath:spring/applicationContext-*.xml classpath*:springmvc/mvc-dispatcher-servlet.xml
+		</param-value>
 	</context-param>
 
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
+
 
 	<servlet-mapping>
 		<servlet-name>mvc-dispatcher</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>/meta/*</url-pattern>
 	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>meta/pages/index</welcome-file>
+	</welcome-file-list>
 </web-app>
