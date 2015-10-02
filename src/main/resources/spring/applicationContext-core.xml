@@ -4,6 +4,15 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+       <!--数据格式转化json-->
+       <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+              <property name="messageConverters">
+                     <list>
+                            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+                     </list>
+              </property>
+       </bean>
+
 
 
        <!-- 引入jdbc配置文件 -->
@@ -31,6 +40,15 @@
               <!-- 控制数据源内加载的PreparedStatements的数量-->
               <property name="maxStatements" value="${jdbc.maxStatements}"></property>
               <property name="testConnectionOnCheckout" value="${jdbc.testConnectionOnCheckout}"></property>
+       </bean>
+
+       <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+              <property name="dataSource" ref="dataSource"/>
+       </bean>
+
+       <bean id="etlMetaTableBaseMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+              <property name="mapperInterface" value="com.fanli.metadata.dao.base.EtlMetaTableBaseMapper"/>
+              <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
        </bean>
        <!--事务处理，spring-orm包-->
        <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

@@ -11,9 +11,16 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/pages")
 public class ViewController {
 
-    @RequestMapping(value = "/{page}",method = RequestMethod.GET)
-    public String getViews(@PathVariable("page") String page) {
-        return page;
+    @RequestMapping(value = "{main}/{page}",method = RequestMethod.GET)
+    public ModelAndView getViews(@PathVariable("main") String main,@PathVariable("page") String page) {
+        ModelAndView mv = new ModelAndView("main/" + main);
+        mv.addObject("page",page);
+        return mv;
+    }
+
+    @RequestMapping(value = "template/{page}",method = RequestMethod.GET)
+    public String getTemplateViews(@PathVariable("page") String templatePage) {
+        return "template/" + templatePage;
     }
 
 }

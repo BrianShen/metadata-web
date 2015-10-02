@@ -95,6 +95,19 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+
+        <!--spring内置 返回值转json支持-->
+        <!--Controller 中 使用：@ResponseBody 标注方法，该方法返回 Java对象（支持复杂对象），MappingJacksonHttpMessageConverter 会将对象转换为 JSON 输出-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.5.1</version>
+        </dependency>
     </dependencies>
 
     <build>

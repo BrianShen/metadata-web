@@ -34,6 +34,6 @@
 	</servlet-mapping>
 
 	<welcome-file-list>
-		<welcome-file>meta/pages/index</welcome-file>
+		<welcome-file>meta/pages/index/data_search</welcome-file>
 	</welcome-file-list>
 </web-app>
