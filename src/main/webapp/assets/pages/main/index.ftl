@@ -12,6 +12,7 @@
     <!-- basic styles -->
 
     <link href="/assets/lib/bootstrap/bootstrap.min.css" rel="stylesheet"/>
+    <#--<link href="/assets/css/ace.min.css" rel="stylesheet"/>-->
     <link rel="stylesheet" href="/assets/lib/ace/css/font-awesome.min.css"/>
 
     <!-- page specific plugin styles -->
@@ -29,6 +30,7 @@
     <link rel="stylesheet" href="/assets/lib/typeahead/typeahead.css">
 
     <link rel="stylesheet" href="/assets/css/common.css"/>
+
 
 
 </head>
@@ -78,6 +80,7 @@
 <script type="text/javascript" src="/assets/lib/ace/js/jquery-2.0.3.min.js"></script>
 <script src="/assets/lib/bootstrap/bootstrap.min.js"></script>
 <script src="/assets/lib/typeahead/typeahead.bundle.min.js"></script>
+<@content.lib></@content.lib>
 
 <script src="/assets/lib/angular.min.js"></script>
 <script src="/assets/lib/angular-resource.min.js"></script>

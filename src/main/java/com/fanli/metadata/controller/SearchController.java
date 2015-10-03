@@ -38,27 +38,6 @@ public class SearchController {
         return result;
     }
 
-    @RequestMapping(value = "/tables",method = RequestMethod.GET)
-    @ResponseBody
-    public Result<EtlMetaTableBase> findTablesByParams
-            (@RequestParam(value = "keyword",required = false) String keyword) {
 
-        Result<EtlMetaTableBase> result = new Result<EtlMetaTableBase>();
-        EtlMetaTableBaseExample example = new EtlMetaTableBaseExample();
-        EtlMetaTableBaseExample.Criteria criteria = example.createCriteria();
-        if (keyword != null) {
-            criteria.andTableNameLike("%" + keyword + "%");
-        }
-
-        List<EtlMetaTableBase> list = etlMetaTableBaseMapper.selectByExample(example);
-        if (list != null) {
-            result.setResults(list);
-            result.setCount(list.size());
-        }
-        result.setIsSuccess(true);
-
-        return result;
-
-    }
 
 }

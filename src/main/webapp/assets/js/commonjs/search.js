@@ -103,12 +103,8 @@ function generateSearchEntrance(requestUrl, requestData) {
                     + "<div class='page-bar clearfix'><div class='pagination-bav'><span id='resultNums'></span>"
                     + "<div id='Pagination' class='pagination'></div></div>"
                     + "</div></div>";
-                if (data.type != undefined) {
-                    var $tagInfo = "<div class='tag-info' style='margin-top: 20px; margin-left: 10px;'><span style='font-weight: bolder; font-size: 16px; color: #cb6fd7'>" + transferType(data.type) + "</span><span style='margin-left: 5px; color: #999'>数据列表</span>:</div>"
-                    $('div#content-result').html($tagInfo + $resultInfo);
-                } else {
-                    $('div#content-result').html($resultInfo);
-                }
+                $('div#content-result').html($resultInfo);
+
                 insertResult(data.results);
                 //分页显示
                 paginationInit();
@@ -134,10 +130,10 @@ function insertResult(data) {
     $("#hidden-result table").empty();
     for (var i = 0; i < data.length; i++) {
         var $result_content = "<tr class='result'>"
-            + "<td><a href='/model-info.html?tableId=" + data[i].tableGuidHash + "' target='_blank'>" + data[i].tableName + "</a></td>"
-            + "<td>" + Global.getNameByPinyin(processString(data[i].tableOwner, '').toLowerCase()) + "</td>"
-            + "<td>" + transferType(data[i].storage) + "</td>"
-            + "<td>" + cutStr(data[i].tableDesc) + "</td>";
+            + "<td><a href='/model-info.html?tableId=" + data[i].id + "' target='_blank'>" + data[i].tableName + "</a></td>"
+            + "<td>" + data[i].owner + "</td>"
+            + "<td>" + data[i].storageType + "</td>"
+            + "<td>" + cutStr(data[i].tableComment) + "</td></tr>";
         $("#hidden-result table").append($result_content);
     }
 }
@@ -148,6 +144,7 @@ function insertResult(data) {
 function paginationInit() {
     // 创建分页
     var num_entries = $("#hidden-result table tr.result").length;
+    console.log(num_entries)
     $("#Pagination").pagination(num_entries, {
         num_edge_entries: 1, //边缘页数
         num_display_entries: 5, //主体页数
@@ -161,12 +158,13 @@ function paginationInit() {
 function pageselectCallback(page_index, jq) {
     var $new_content = $("#hidden-result tr.result:eq(" + (page_index * 20) + "),#hidden-result tr.result:gt(" + (page_index * 20) + ")").clone();
     var new_content = $new_content.filter(":lt(20)").clone();
+    console.log(new_content)
     $("#search-result tbody").empty().append(new_content); //装载对应分页的内容
     return false;
 }
 
 var getAllTableName = function () {
-    var $tableName = [], $totalName = [], $tagName = [];
+    var $tableName = [], $totalName = [];
     $.ajax({
         type: 'GET',
         dataType: "json",
