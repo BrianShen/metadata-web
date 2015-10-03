@@ -33,7 +33,7 @@
 
 </head>
 <body ng-app="metaApp">
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default" id="nav">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -54,23 +54,25 @@
                 </ul>
                 <form class="navbar-form navbar-right" role="search">
                     <div class="form-group">
-                        <input type="text" id="search-input" class="typeahead form-control" placeholder="Search" style="width: 400px">
+                        <input type="text" id="search-input" class="typeahead form-control" placeholder="search models" style="width: 400px">
                     </div>
-                    <button type="submit" id="search-btn" class="btn btn-default">Submit</button>
+                    <button type="submit" id="search-btn" class="btn btn-success">
+                        查询
+                    </button>
                 </form>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
     <div id="main">
-        <div class="container-fluid" style="background-color: red">
-            <h1>32324343</h1>
+        <div class="container-fluid" >
+            <@content.content></@content.content>
         </div>
     </div>
 
 
-    <div class="footer">
-    <@common.footer/>
-    </div>
+    <#--<div class="footer">-->
+    <#--<@common.footer/>-->
+    <#--</div>-->
 <!-- basic scripts -->
 
 <script type="text/javascript" src="/assets/lib/ace/js/jquery-2.0.3.min.js"></script>

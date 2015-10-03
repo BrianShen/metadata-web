@@ -5,9 +5,9 @@
 
 var SearchGlobal = {};
 $(function () {
-    ////³õÊ¼»¯ÓÃ»§µÇÂ¼ĞÅÏ¢
+    ////åˆå§‹åŒ–ç”¨æˆ·ç™»å½•ä¿¡æ¯
     //Global.initLogin();
-    ////³õÊ¼»¯×ó²àµ¼º½À¸
+    ////åˆå§‹åŒ–å·¦ä¾§å¯¼èˆªæ 
     //initLeftNav();
 
     //SearchGlobal.keyword = parserUrl("keyword");
@@ -26,7 +26,7 @@ $(function () {
     //}
 
     /**
-     * ¼à¿ØÓÃ»§µã»÷enterÊÂ¼ş
+     * ç›‘æ§ç”¨æˆ·ç‚¹å‡»enteräº‹ä»¶
      * */
     document.onkeydown = function () {
         if (event.keyCode == 13) {
@@ -39,7 +39,7 @@ $(function () {
 });
 
 /**
- * ³õÊ¼»¯×ó²àµ¼º½À¸
+ * åˆå§‹åŒ–å·¦ä¾§å¯¼èˆªæ 
  */
 //var initLeftNav = function () {
 //    var object = {
@@ -50,7 +50,7 @@ $(function () {
 //}
 
 /**
- * search btnµã»÷ÊÂ¼ş
+ * search btnç‚¹å‡»äº‹ä»¶
  * */
 $("#search-btn").click(function () {
     var keyword = $("#search-input").val().trim();
@@ -58,7 +58,7 @@ $("#search-btn").click(function () {
 });
 
 /***
- * ËÑË÷Ä£ĞÍ
+ * æœç´¢æ¨¡å‹
  */
 function searchModelByKeyWord(keyWord) {
     if ($.trim($('#search-input').val()) === "") {
@@ -94,32 +94,32 @@ function generateSearchEntrance(requestUrl, requestData) {
         data: requestData,
         success: function (data) {
             if (data.count == 0) {
-                var $info_content = "<p class='search-no-result-info'><span style='color: red'>±§Ç¸,Ã»ÓĞÕÒµ½Ïà¹ØµÄÄ£ĞÍĞÅÏ¢!</span></p>"
+                var $info_content = "<p class='search-no-result-info'><span style='color: red'>æŠ±æ­‰,æ²¡æœ‰æ‰¾åˆ°ç›¸å…³çš„æ¨¡å‹ä¿¡æ¯!</span></p>"
                 $('div#content-result').html($info_content);
             }
             else {
                 var $resultInfo = "<div class='search-result'><table class='table table-hover' id='search-result'>"
-                    + "<thead><tr><th style='width:35%'>Ãû³Æ</th><th style='width:17%'>¿ª·¢Õß</th><th style='width:15%'>ÀàĞÍ</th><th style='width:33%'>ÃèÊö</th></tr></thead><tbody></tbody></table>"
+                    + "<thead><tr><th style='width:35%'>åç§°</th><th style='width:17%'>å¼€å‘è€…</th><th style='width:15%'>ç±»å‹</th><th style='width:33%'>æè¿°</th></tr></thead><tbody></tbody></table>"
                     + "<div class='page-bar clearfix'><div class='pagination-bav'><span id='resultNums'></span>"
                     + "<div id='Pagination' class='pagination'></div></div>"
                     + "</div></div>";
                 if (data.type != undefined) {
-                    var $tagInfo = "<div class='tag-info' style='margin-top: 20px; margin-left: 10px;'><span style='font-weight: bolder; font-size: 16px; color: #cb6fd7'>" + transferType(data.type) + "</span><span style='margin-left: 5px; color: #999'>Êı¾İÁĞ±í</span>:</div>"
+                    var $tagInfo = "<div class='tag-info' style='margin-top: 20px; margin-left: 10px;'><span style='font-weight: bolder; font-size: 16px; color: #cb6fd7'>" + transferType(data.type) + "</span><span style='margin-left: 5px; color: #999'>æ•°æ®åˆ—è¡¨</span>:</div>"
                     $('div#content-result').html($tagInfo + $resultInfo);
                 } else {
                     $('div#content-result').html($resultInfo);
                 }
                 insertResult(data.results);
-                //·ÖÒ³ÏÔÊ¾
+                //åˆ†é¡µæ˜¾ç¤º
                 paginationInit();
-                $('#resultNums').html("¹²ËÑË÷µ½ " + data.count + " Ìõ½á¹û");
-                //»ñµÃÈÈÃÅ·ÃÎÊÄ£ĞÍ
+                $('#resultNums').html("å…±æœç´¢åˆ° " + data.count + " æ¡ç»“æœ");
+                //è·å¾—çƒ­é—¨è®¿é—®æ¨¡å‹
 //                getVisitTopModels();
                 $me.button('reset');
             }
         },
         error: function (errorData) {
-            $('div#content-result').html("<div class='alert fade in alert-danger'>error code: " + errorData.status + " ËÑË÷ÇëÇó·¢ËÍÊ§°Ü£¬ÇëÖØÊÔ!</div>");
+            $('div#content-result').html("<div class='alert fade in alert-danger'>error code: " + errorData.status + " æœç´¢è¯·æ±‚å‘é€å¤±è´¥ï¼Œè¯·é‡è¯•!</div>");
             $('div.alert').css("text-align", "center");
             $('div.alert').show();
             $me.button('reset');
@@ -128,7 +128,7 @@ function generateSearchEntrance(requestUrl, requestData) {
 }
 
 /**
- * ½«ËÑË÷ºó¶Ë·µ»ØµÄjsonÊı¾İ²åÈëhidden-resultµÄÒ»¸ötrÖĞ
+ * å°†æœç´¢åç«¯è¿”å›çš„jsonæ•°æ®æ’å…¥hidden-resultçš„ä¸€ä¸ªträ¸­
  * */
 function insertResult(data) {
     $("#hidden-result table").empty();
@@ -143,25 +143,25 @@ function insertResult(data) {
 }
 
 /**
- * ·ÖÒ³ÏÔÊ¾¹¦ÄÜ
+ * åˆ†é¡µæ˜¾ç¤ºåŠŸèƒ½
  * */
 function paginationInit() {
-    // ´´½¨·ÖÒ³
+    // åˆ›å»ºåˆ†é¡µ
     var num_entries = $("#hidden-result table tr.result").length;
     $("#Pagination").pagination(num_entries, {
-        num_edge_entries: 1, //±ßÔµÒ³Êı
-        num_display_entries: 5, //Ö÷ÌåÒ³Êı
+        num_edge_entries: 1, //è¾¹ç¼˜é¡µæ•°
+        num_display_entries: 5, //ä¸»ä½“é¡µæ•°
         callback: pageselectCallback,
-        items_per_page: 20, //Ã¿Ò³ÏÔÊ¾20Ïî
-        prev_text: "Ç°Ò»Ò³",
-        next_text: "ºóÒ»Ò³"
+        items_per_page: 20, //æ¯é¡µæ˜¾ç¤º20é¡¹
+        prev_text: "å‰ä¸€é¡µ",
+        next_text: "åä¸€é¡µ"
     });
 }
 
 function pageselectCallback(page_index, jq) {
     var $new_content = $("#hidden-result tr.result:eq(" + (page_index * 20) + "),#hidden-result tr.result:gt(" + (page_index * 20) + ")").clone();
     var new_content = $new_content.filter(":lt(20)").clone();
-    $("#search-result tbody").empty().append(new_content); //×°ÔØ¶ÔÓ¦·ÖÒ³µÄÄÚÈİ
+    $("#search-result tbody").empty().append(new_content); //è£…è½½å¯¹åº”åˆ†é¡µçš„å†…å®¹
     return false;
 }
 
@@ -244,7 +244,7 @@ var substringMatcher = function (strs) {
         $.each(strs, function (i, str) {
             if (substringRegex.test(str)) {
                 matches.push({ value: str });
-                //ÉèÖÃÍÆ¼ö½á¹ûµÄ¸öÊı
+                //è®¾ç½®æ¨èç»“æœçš„ä¸ªæ•°
                 if (matches.length > 10) {
                     return false;
                 }
@@ -255,7 +255,7 @@ var substringMatcher = function (strs) {
 };
 
 /**
- * ÇĞ¸î×Ö·û´®
+ * åˆ‡å‰²å­—ç¬¦ä¸²
  * */
 var cutStr = function (str) {
     if (str === null || str === '') {
@@ -263,7 +263,7 @@ var cutStr = function (str) {
     } else if (str.length < 200) {
         return str;
     } else {
-        return "ÄÚÈİÌ«¶à£¬Çë½øÈ¥²é¿´...";
+        return "å†…å®¹å¤ªå¤šï¼Œè¯·è¿›å»æŸ¥çœ‹...";
     }
 }
 
@@ -277,7 +277,7 @@ var getVisitTopModels = function () {
         success: function (data) {
             if (data.code == 200) {
                 var models = data.topModels;
-                var topModelsHtml = "<tr><th style='width: 55%'>ÈÈÃÅÄ£ĞÍ</th><th style='width: 15%'>ÀàĞÍ</th><th style='width: 33%'>ÈÈÃÅÖ¸Êı</th></tr>";
+                var topModelsHtml = "<tr><th style='width: 55%'>çƒ­é—¨æ¨¡å‹</th><th style='width: 15%'>ç±»å‹</th><th style='width: 33%'>çƒ­é—¨æŒ‡æ•°</th></tr>";
                 if (models.length > 0) {
                     for (var i = 0; i < models.length; i++) {
                         var spanClass = "";
