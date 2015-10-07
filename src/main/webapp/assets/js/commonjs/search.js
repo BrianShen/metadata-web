@@ -2,29 +2,7 @@
  * Created by wei.shen on 2015/10/2.
  */
 
-
-var SearchGlobal = {};
 $(function () {
-    ////初始化用户登录信息
-    //Global.initLogin();
-    ////初始化左侧导航栏
-    //initLeftNav();
-
-    //SearchGlobal.keyword = parserUrl("keyword");
-    //SearchGlobal.tagId = parserUrl("tagId");
-    //SearchGlobal.type = parserUrl("type");
-    //if (SearchGlobal.keyword === 'none' && SearchGlobal.tagId === 'none' && SearchGlobal.type == 'none') {
-    //    window.location.href = "search-model.html";
-    //}
-    //
-    //if (SearchGlobal.keyword != 'none') {
-    //    searchModelByKeyWord(SearchGlobal.keyword);
-    //} else if (SearchGlobal.tagId != 'none') {
-    //    searchByTag(SearchGlobal.tagId);
-    //} else {
-    //    searchByType(SearchGlobal.type);
-    //}
-
     /**
      * 监控用户点击enter事件
      * */
@@ -36,24 +14,17 @@ $(function () {
     }
 
     initTypeaHead();
+    $("#search-input").focus();
 });
-
-/**
- * 初始化左侧导航栏
- */
-//var initLeftNav = function () {
-//    var object = {
-//        isDataSearchPage: 'active'
-//    };
-//    var $htmlPart = getHtmlTemplate('template/left-nav.html', object);
-//    $("ul.page-nav").html($htmlPart);
-//}
 
 /**
  * search btn点击事件
  * */
 $("#search-btn").click(function () {
     var keyword = $("#search-input").val().trim();
+    if(keyword == ''||keyword ==undefined) {
+        return;
+    }
     searchModelByKeyWord(keyword);
 });
 
@@ -130,7 +101,7 @@ function insertResult(data) {
     $("#hidden-result table").empty();
     for (var i = 0; i < data.length; i++) {
         var $result_content = "<tr class='result'>"
-            + "<td><a href='/model-info.html?tableId=" + data[i].id + "' target='_blank'>" + data[i].tableName + "</a></td>"
+            + "<td><a href='/meta/pages/model_detail?tableId=" + data[i].id + "' target='_blank'>" + data[i].tableName + "</a></td>"
             + "<td>" + data[i].owner + "</td>"
             + "<td>" + data[i].storageType + "</td>"
             + "<td>" + cutStr(data[i].tableComment) + "</td></tr>";
@@ -182,25 +153,6 @@ var getAllTableName = function () {
             }
         }
     });
-
-    //$.ajax({
-    //    type: 'POST',
-    //    dataType: "json",
-    //    contentType: 'application/json',
-    //    url: "/rest/search/autoComplete?type=0",
-    //    success: function (data) {
-    //        if (data.count > 0) {
-    //            for (var i = 0; i < data.count; i++) {
-    //                $tagName.push(data.msg[i].name);
-    //                $totalName.push(data.msg[i].name);
-    //            }
-    //            var $local = window.sessionStorage;
-    //            if ($local) {
-    //                $local.setItem("tagList", JSON.stringify($tagName));
-    //            }
-    //        }
-    //    }
-    //});
 
     return $totalName;
 }
@@ -261,7 +213,7 @@ var cutStr = function (str) {
     } else if (str.length < 200) {
         return str;
     } else {
-        return "内容太多，请进去查看...";
+        return "描述信息太长，点击表名查看详情。。。";
     }
 }
 

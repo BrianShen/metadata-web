@@ -21,8 +21,8 @@
        <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
               <property name="driverClass" value="${driver}"></property>
               <property name="jdbcUrl" value="${url}"></property>
-              <property name="user" value="${username}"></property>
-              <property name="password" value="${password}"></property>
+              <property name="user" value="root"></property>
+              <property name="password" value="root"></property>
               <!-- 初始化的连接数，该值应该在minPoolSize和maxPoolSize之间 -->
               <property name="initialPoolSize" value="${jdbc.initialPoolSize}"></property>
               <property name="minPoolSize" value="${jdbc.minPoolSize}"></property>
@@ -49,6 +49,18 @@
 
        <bean id="etlMetaTableBaseMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
               <property name="mapperInterface" value="com.fanli.metadata.dao.base.EtlMetaTableBaseMapper"/>
+              <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+       </bean>
+       <bean id="etlMetaColumnMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+              <property name="mapperInterface" value="com.fanli.metadata.dao.base.EtlMetaColumnMapper"/>
+              <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+       </bean>
+       <bean id="etlMetaHiveTableMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+              <property name="mapperInterface" value="com.fanli.metadata.dao.base.EtlMetaHiveTableMapper"/>
+              <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+       </bean>
+       <bean id="etlMetaPartitionMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+              <property name="mapperInterface" value="com.fanli.metadata.dao.base.EtlMetaPartitionMapper"/>
               <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
        </bean>
        <!--事务处理，spring-orm包-->

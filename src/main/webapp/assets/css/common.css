@@ -57,5 +57,37 @@
 
 #search-result tbody tr td a:hover {
     background-color: yellow;
+    color: white;
+    font-size: 18px;
+}
+
+div.container{
+    text-align: left;
+}
+
+#inputInfoId /*输入框*/
+{
+    width: 600px;
+    height: 40px;
+    line-height:40px;
+    border-style: solid;
+    font-size: 20px;
+    float: left;
+}
+
+#searchbutton /*搜索按钮*/
+{
+    width:200px;
+    height:40px;
+    line-height:40px;
+    cursor:pointer;
+
+    font-size:1.5em;
+    color:#FFFFFF;
+    letter-spacing:.1em;
+    background-color: #3E9CBF;
+
+    float: right;
+    text-align: center;
 }
 

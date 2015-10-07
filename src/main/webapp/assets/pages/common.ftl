@@ -6,7 +6,7 @@
 
     <ul class="nav nav-pills nav-stacked">
         <li>
-            <a href="/meta/pages/index/data_search">
+            <a href="/meta/pages/data_search">
                 <i class="icon-dashboard"></i>
                 <span class="menu-text"> 数据检索 </span>
             </a>

@@ -28,12 +28,23 @@
 
 
 
+
+
 	<servlet-mapping>
 		<servlet-name>mvc-dispatcher</servlet-name>
 		<url-pattern>/meta/*</url-pattern>
 	</servlet-mapping>
 
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>classpath:props/log4j.properties</param-value>
+	</context-param>
+
 	<welcome-file-list>
-		<welcome-file>meta/pages/index/data_search</welcome-file>
+		<welcome-file>meta/</welcome-file>
 	</welcome-file-list>
 </web-app>

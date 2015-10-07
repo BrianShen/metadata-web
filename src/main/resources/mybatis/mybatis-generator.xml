@@ -5,7 +5,7 @@
 
 <generatorConfiguration>
     <classPathEntry
-            location="C:\Users\wei.shen\.m2\repository\mysql\mysql-connector-java\5.1.26\mysql-connector-java-5.1.26.jar"/>
+            location="C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\5.1.25\mysql-connector-java-5.1.25.jar"/>
 
     <context id="MysqlTables" targetRuntime="MyBatis3">
         <commentGenerator>
@@ -27,9 +27,10 @@
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
-        <table tableName="etl_meta_table_base" domainObjectName="EtlMetaTableBase"/>
+        <!--<table tableName="etl_meta_table_base" domainObjectName="EtlMetaTableBase"/>-->
         <!--<table tableName="etl_meta_hivetable" domainObjectName="EtlMetaHiveTable"/>-->
         <!--<table tableName="etl_meta_column" domainObjectName="EtlMetaColumn"/>-->
+        <table tableName="etl_meta_partition" domainObjectName="EtlMetaPartition"/>
 
 
     </context>

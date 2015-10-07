@@ -23,18 +23,17 @@ public class SearchController {
     private EtlMetaTableBaseMapper etlMetaTableBaseMapper;
 
 
+
     @RequestMapping(value = "/tableNames",method = RequestMethod.GET)
     @ResponseBody
     public Result<String> searchKeywordForAutoComplete() {
         Result<String> result = new Result<String>();
-        List<String> list = new ArrayList<String>();
-        list.add("shenwei");
-        list.add("shenwei2343");
-        list.add("ssshenwei3re");
-        list.add("ssshenwei3nwei3rre");
-        list.add("ssshenwnwei3rei3re");
-        result.setResults(list);
-        result.setCount(5);
+        List<String> list = etlMetaTableBaseMapper.listAllTableNames();
+        if (list != null) {
+            result.setResults(list);
+            result.setCount(list.size());
+            result.setIsSuccess(true);
+        }
         return result;
     }
 

@@ -8,5 +8,6 @@
         <mapper resource="mybatis/sqlmap/EtlMetaColumnMapper.xml" />
         <mapper resource="mybatis/sqlmap/EtlMetaHiveTableMapper.xml" />
         <mapper resource="mybatis/sqlmap/EtlMetaTableBaseMapper.xml" />
+        <mapper resource="mybatis/sqlmap/EtlMetaPartitionMapper.xml"/>
     </mappers>
 </configuration>

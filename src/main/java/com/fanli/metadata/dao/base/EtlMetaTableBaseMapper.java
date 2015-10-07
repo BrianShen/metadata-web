@@ -6,31 +6,33 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface EtlMetaTableBaseMapper {
-    int countByExample(EtlMetaTableBaseExample example);
 
-    int deleteByExample(EtlMetaTableBaseExample example);
+    /**
+     * 查询所有有效的表名
+     * @return 表名的列表
+     */
+    List<String> listAllTableNames();
 
-    int deleteByPrimaryKey(Integer id);
+    /**
+     * 根据关键字模糊查询表
+     * @param keyword
+     * @return 模型信息列表
+     */
+    List<EtlMetaTableBase> findTablesByNameFuzzy(String keyword);
 
-    int insert(EtlMetaTableBase record);
+    /**
+     * 根据参数列表查询表信息
+     * @param etlMetaTableBase
+     * @return 模型信息列表
+     */
+    List<EtlMetaTableBase> findTablesByParams(EtlMetaTableBase etlMetaTableBase);
 
-    int insertSelective(EtlMetaTableBase record);
+    /**
+     * 根据主键id查询表信息
+     * @param id
+     * @return
+     */
+    EtlMetaTableBase findTableById(Integer id);
 
-    List<EtlMetaTableBase> selectByExampleWithBLOBs(EtlMetaTableBaseExample example);
 
-    List<EtlMetaTableBase> selectByExample(EtlMetaTableBaseExample example);
-
-    EtlMetaTableBase selectByPrimaryKey(Integer id);
-
-    int updateByExampleSelective(@Param("record") EtlMetaTableBase record, @Param("example") EtlMetaTableBaseExample example);
-
-    int updateByExampleWithBLOBs(@Param("record") EtlMetaTableBase record, @Param("example") EtlMetaTableBaseExample example);
-
-    int updateByExample(@Param("record") EtlMetaTableBase record, @Param("example") EtlMetaTableBaseExample example);
-
-    int updateByPrimaryKeySelective(EtlMetaTableBase record);
-
-    int updateByPrimaryKeyWithBLOBs(EtlMetaTableBase record);
-
-    int updateByPrimaryKey(EtlMetaTableBase record);
 }

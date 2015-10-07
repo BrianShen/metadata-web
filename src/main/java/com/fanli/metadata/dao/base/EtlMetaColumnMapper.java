@@ -6,17 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface EtlMetaColumnMapper {
-    int countByExample(EtlMetaColumnExample example);
 
-    int deleteByExample(EtlMetaColumnExample example);
+    List<EtlMetaColumn> findColumnsByTableId(@Param("table_id")Integer table_id,@Param("isPartition") Integer is_partition);
 
-    int insert(EtlMetaColumn record);
-
-    int insertSelective(EtlMetaColumn record);
-
-    List<EtlMetaColumn> selectByExample(EtlMetaColumnExample example);
-
-    int updateByExampleSelective(@Param("record") EtlMetaColumn record, @Param("example") EtlMetaColumnExample example);
-
-    int updateByExample(@Param("record") EtlMetaColumn record, @Param("example") EtlMetaColumnExample example);
 }

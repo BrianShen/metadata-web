@@ -10,6 +10,8 @@
     <link rel="Shortcut Icon" href="/assets/img/logo.png" />
 
     <!-- basic styles -->
+    <!--输入搜索自动补全-->
+    <link rel="stylesheet" href="/assets/lib/typeahead/typeahead.css">
 
     <link href="/assets/lib/bootstrap/bootstrap.min.css" rel="stylesheet"/>
     <#--<link href="/assets/css/ace.min.css" rel="stylesheet"/>-->
@@ -26,10 +28,14 @@
     <#--<link rel="stylesheet" href="/assets/lib/ace/css/ace.min.css"/>-->
     <#--<link rel="stylesheet" href="/assets/lib/ace/css/ace-rtl.min.css"/>-->
     <#--<link rel="stylesheet" href="/assets/lib/ace/css/ace-skins.min.css"/>-->
-    <!--输入搜索自动补全-->
-    <link rel="stylesheet" href="/assets/lib/typeahead/typeahead.css">
+
 
     <link rel="stylesheet" href="/assets/css/common.css"/>
+    <style type="text/css">
+        body{
+            font-size:14px;
+        }
+    </style>
 
 
 
@@ -47,26 +53,19 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/meta/pages/index/data_search">数据检索</a></li>
+                    <li class="active"><a href="/meta/pages/data_search">数据检索</a></li>
                     <li>
                         <a href="http://bidiaodu.office.51fanli.com/" target="_blank">
                             <span class="menu-text">调度平台</span>
                         </a>
                     </li>
                 </ul>
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group">
-                        <input type="text" id="search-input" class="typeahead form-control" placeholder="search models" style="width: 400px">
-                    </div>
-                    <button type="submit" id="search-btn" class="btn btn-success">
-                        查询
-                    </button>
-                </form>
+
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
     <div id="main">
-        <div class="container-fluid" >
+        <div class="container" style="max-width: 90%">
             <@content.content></@content.content>
         </div>
     </div>
@@ -93,6 +92,7 @@
 <script src="/assets/js/controller/sidebarCtrl.js"></script>
 
 <script src="/assets/js/commonjs/search.js"></script>
+<@content.js/>
 
 </body>
 </html>
