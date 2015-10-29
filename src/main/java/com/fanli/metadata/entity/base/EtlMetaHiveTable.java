@@ -1,6 +1,8 @@
 package com.fanli.metadata.entity.base;
 
 public class EtlMetaHiveTable {
+    private Long globalId;
+
     private Integer tableId;
 
     private String hiveDb;
@@ -20,6 +22,14 @@ public class EtlMetaHiveTable {
     private String storeFormat;
 
     private String ddlWithChange;
+
+    public Long getGlobalId() {
+        return globalId;
+    }
+
+    public void setGlobalId(Long globalId) {
+        this.globalId = globalId;
+    }
 
     public Integer getTableId() {
         return tableId;

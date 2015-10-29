@@ -15,9 +15,10 @@ public class CommonUtils {
     private static Logger logger = Logger.getLogger(CommonUtils.class);
 
     public static String generateExampleSql(EtlMetaTableBase tableBase,EtlMetaPartition metaPartition,List<EtlMetaColumn> partitions) {
+        String db = tableBase.getDb();
         String name = tableBase.getTableName();
         StringBuffer sb = new StringBuffer();
-        sb.append("SELECT * FROM " + name.toUpperCase());
+        sb.append("SELECT * FROM " + db.toUpperCase() + "." + name.toUpperCase());
         if (metaPartition == null)  {
             sb.append( " LIMIT 10");
             return sb.toString();

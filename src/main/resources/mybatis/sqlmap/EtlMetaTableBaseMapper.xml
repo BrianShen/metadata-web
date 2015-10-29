@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fanli.metadata.dao.base.EtlMetaTableBaseMapper">
   <resultMap id="BaseResultMap" type="com.fanli.metadata.entity.base.EtlMetaTableBase">
-    <id column="id" jdbcType="INTEGER" property="id" />
+    <id column="global_table_id" jdbcType="INTEGER" property="globalTableId" />
+    <result column="hive_table_id" jdbcType="INTEGER" property="hiveTableId"/>
     <result column="job_id" jdbcType="INTEGER" property="jobId" />
     <result column="table_name" jdbcType="VARCHAR" property="tableName" />
     <result column="domain" jdbcType="VARCHAR" property="domain" />
@@ -68,14 +69,14 @@
         AND owner = #{owner}
       </if>
       <if test="id != null">
-        AND id = #{id}
+        AND global_table_id = #{globalTableId}
       </if>
     </where>
   </select>
 
   <!--根据主键id查询table-->
   <select id="findTableById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    SELECT * FROM etl_meta_table_base WHERE status=1 AND id = #{id}
+    SELECT * FROM etl_meta_table_base WHERE status=1 AND global_table_id = #{id}
   </select>
 
 </mapper>

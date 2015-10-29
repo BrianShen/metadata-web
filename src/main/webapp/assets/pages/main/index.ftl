@@ -12,7 +12,7 @@
     <!-- basic styles -->
     <!--输入搜索自动补全-->
     <link rel="stylesheet" href="/assets/lib/typeahead/typeahead.css">
-
+<link rel="stylesheet" href="/assets/lib/ace/css/ace.min.css">
     <link href="/assets/lib/bootstrap/bootstrap.min.css" rel="stylesheet"/>
     <#--<link href="/assets/css/ace.min.css" rel="stylesheet"/>-->
     <link rel="stylesheet" href="/assets/lib/ace/css/font-awesome.min.css"/>
@@ -65,7 +65,7 @@
         </div><!-- /.container-fluid -->
     </nav>
     <div id="main">
-        <div class="container" style="max-width: 90%">
+        <div class="container-fluid" style="max-width: 90%">
             <@content.content></@content.content>
         </div>
     </div>

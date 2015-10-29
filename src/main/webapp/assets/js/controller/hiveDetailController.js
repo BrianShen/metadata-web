@@ -5,6 +5,7 @@
 metaApp.controller("HiveDetailCtrl",function($scope,$resource) {
     var model = $resource("/meta/tables/:tableId",{tableId:"@tableId"});
     var columns = $resource("/meta/columns",{tableId:'@tableId',isPartition:'@isPartition'});
+    var queryHive = $resource("/meta/hive_resource/query",{sql:"@sql"});
 
     init();
 
@@ -12,6 +13,36 @@ metaApp.controller("HiveDetailCtrl",function($scope,$resource) {
         $scope.tableId = parserUrl("tableId");
         getModelInfo();
         getColumns();
+    }
+
+
+    $scope.
+
+    /**
+     * 预览样例数据Action
+     * */
+    $scope.reviewSampleData = function() {
+        var $me = $('#sampleBtn');
+        $me.button('loading');
+
+        queryHive.save({sql:$scope.model.exampleSql},function(data) {
+            if (data.isSuccess == true) {
+                var $result = getSampleDataHTML(data);
+                bootbox.dialog({
+                    title: "预览样例数据",
+                    message: $result,
+                    buttons: {
+                        "click": {
+                            "label": "关闭",
+                            "className": "btn-sm btn-primary"
+                        }
+                    }
+                });
+                $me.reset();
+            } else{
+                $me.reset();
+            }
+        },function() {$me.reset();});
     }
 
     function getColumns() {
@@ -24,7 +55,8 @@ metaApp.controller("HiveDetailCtrl",function($scope,$resource) {
     function getModelInfo() {
         model.get({tableId:$scope.tableId},function(data) {
             $scope.model = data.model;
-
+            var hdfs = $scope.model.hiveMeta.hdfsLocation;
+            $scope.hueLocation = hdfs.substring(hdfs.indexOf("/user") + 1);
             console.log(data.model);
         })
     }

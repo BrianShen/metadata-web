@@ -6,5 +6,5 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface EtlMetaPartitionMapper {
-    EtlMetaPartition selectLatestPartition(Integer table_id);
+    EtlMetaPartition selectLatestPartition(Integer tableId);
 }

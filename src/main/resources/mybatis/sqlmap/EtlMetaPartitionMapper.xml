@@ -16,7 +16,7 @@
   <select id="selectLatestPartition" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     SELECT *
     FROM etl_meta_partition
-    WHERE table_id=#{table_id} ORDER BY partition_id desc limit 1;
+    WHERE table_id=#{tableId} ORDER BY partition_id desc limit 1;
   </select>
 
 </mapper>

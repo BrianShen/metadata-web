@@ -91,3 +91,22 @@ div.container{
     text-align: center;
 }
 
+.GKCAEGKBCE {
+    padding: 3px 15px;
+    text-align: left;
+    color: #fff;
+    background-color: #e24e1f;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.GKCAEGKBLD {
+    word-break: keep-all;
+    white-space: nowrap;
+    padding: 3px 3px;
+    overflow: hidden;
+    font-size: 16px;
+    height: 30px;
+    font-family: "Microsoft YaHei" !important;
+}
+

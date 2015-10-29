@@ -3,6 +3,10 @@ package com.fanli.metadata.entity.base;
 import java.util.Date;
 
 public class EtlMetaColumn {
+    private Long globalId;
+
+    private Integer columnId;
+
     private Integer tableId;
 
     private String columnName;
@@ -30,6 +34,21 @@ public class EtlMetaColumn {
     private Date updateTime;
 
     private String lastUpdateUser;
+    public Long getGlobalId() {
+        return globalId;
+    }
+
+    public void setGlobalId(Long globalId) {
+        this.globalId = globalId;
+    }
+
+    public Integer getColumnId() {
+        return columnId;
+    }
+
+    public void setColumnId(Integer columnId) {
+        this.columnId = columnId;
+    }
 
     public Integer getTableId() {
         return tableId;

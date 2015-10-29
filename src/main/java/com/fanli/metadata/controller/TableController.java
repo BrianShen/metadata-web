@@ -9,12 +9,10 @@ import com.fanli.metadata.dao.base.EtlMetaTableBaseMapper;
 import com.fanli.metadata.entity.Result;
 import com.fanli.metadata.entity.base.*;
 import com.fanli.metadata.util.CommonUtils;
-import com.fasterxml.jackson.databind.node.JsonNodeCreator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -101,7 +99,7 @@ public class TableController {
             modelData.put("hiveMeta",hiveMeta);
 
             //生成样例sql
-            EtlMetaPartition partition = etlMetaPartitionMapper.selectLatestPartition(tableId);
+            EtlMetaPartition partition = etlMetaPartitionMapper.selectLatestPartition(model.getHiveTableId());
             String exampleSql = CommonUtils.generateExampleSql(model,partition,partitions);
             modelData.put("exampleSql",exampleSql);
 
@@ -110,8 +108,6 @@ public class TableController {
             //获取下游血缘
 
             //获取hive表大小
-
-
 
 
         }

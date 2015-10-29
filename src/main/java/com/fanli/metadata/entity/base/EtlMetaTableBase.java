@@ -3,7 +3,9 @@ package com.fanli.metadata.entity.base;
 import java.util.Date;
 
 public class EtlMetaTableBase {
-    private Integer id;
+    private Long globalTableId;
+
+    private Integer hiveTableId;
 
     private Integer jobId;
 
@@ -43,12 +45,20 @@ public class EtlMetaTableBase {
 
     private String tableComment;
 
-    public Integer getId() {
-        return id;
+    public Long getGlobalTableId() {
+        return globalTableId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setGlobalTableId(Long globalTableId) {
+        this.globalTableId = globalTableId;
+    }
+
+    public Integer getHiveTableId() {
+        return hiveTableId;
+    }
+
+    public void setHiveTableId(Integer hiveTableId) {
+        this.hiveTableId = hiveTableId;
     }
 
     public Integer getJobId() {

@@ -2,6 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.fanli.metadata.dao.base.EtlMetaColumnMapper" >
   <resultMap id="BaseResultMap" type="com.fanli.metadata.entity.base.EtlMetaColumn" >
+    <id column="column_id" jdbcType="INTEGER" property="columnId"/>
+    <result column="global_id" property="globalId" jdbcType="INTEGER" />
     <result column="table_id" property="tableId" jdbcType="INTEGER" />
     <result column="column_name" property="columnName" jdbcType="VARCHAR" />
     <result column="column_index" property="columnIndex" jdbcType="INTEGER" />
@@ -17,6 +19,7 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="last_update_user" property="lastUpdateUser" jdbcType="VARCHAR" />
   </resultMap>
+
   <sql id="Base_Column_List" >
     table_id, column_name, column_index, column_type, column_comment, default_value, 
     column_access_code, is_primary, is_foreign, is_partition, hot_level, add_time, update_time, 
@@ -25,6 +28,6 @@
   <select id="findColumnsByTableId" resultMap="BaseResultMap" parameterType="map">
     SELECT *
     FROM etl_meta_column
-    WHERE table_id=#{table_id} AND is_partition=#{isPartition} ORDER BY column_index
+    WHERE global_id=#{table_id} AND is_partition=#{isPartition} ORDER BY column_index
   </select>
 </mapper>

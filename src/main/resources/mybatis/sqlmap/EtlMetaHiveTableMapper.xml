@@ -3,6 +3,7 @@
 <mapper namespace="com.fanli.metadata.dao.base.EtlMetaHiveTableMapper" >
   <resultMap id="BaseResultMap" type="com.fanli.metadata.entity.base.EtlMetaHiveTable" >
     <id column="table_id" property="tableId" jdbcType="INTEGER" />
+    <result column="global_id" property="globalId" jdbcType="INTEGER" />
     <result column="hive_db" property="hiveDb" jdbcType="VARCHAR" />
     <result column="input_format" property="inputFormat" jdbcType="VARCHAR" />
     <result column="output_format" property="outputFormat" jdbcType="VARCHAR" />
@@ -20,8 +21,10 @@
   </sql>
 
   <select id="findHiveMetaByTableId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    SELECT <include refid="Base_Column_List"/> FROM etl_meta_hivetable WHERE table_id=#{table_id}
+    SELECT <include refid="Base_Column_List"/> FROM etl_meta_hivetable WHERE global_id=#{table_id}
   </select>
+
+
 
 
 </mapper>

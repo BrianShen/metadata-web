@@ -101,7 +101,7 @@ function insertResult(data) {
     $("#hidden-result table").empty();
     for (var i = 0; i < data.length; i++) {
         var $result_content = "<tr class='result'>"
-            + "<td><a href='/meta/pages/model_detail?tableId=" + data[i].id + "' target='_blank'>" + data[i].tableName + "</a></td>"
+            + "<td><a href='/meta/pages/model_detail?tableId=" + data[i].globalTableId + "' target='_blank'>" + data[i].tableName + "</a></td>"
             + "<td>" + data[i].owner + "</td>"
             + "<td>" + data[i].storageType + "</td>"
             + "<td>" + cutStr(data[i].tableComment) + "</td></tr>";
