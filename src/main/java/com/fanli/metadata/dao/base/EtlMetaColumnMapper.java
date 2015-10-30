@@ -8,5 +8,6 @@ import org.apache.ibatis.annotations.Param;
 public interface EtlMetaColumnMapper {
 
     List<EtlMetaColumn> findColumnsByTableId(@Param("table_id")Integer table_id,@Param("isPartition") Integer is_partition);
+    int updateColumn(@Param("column")EtlMetaColumn column);
 
 }

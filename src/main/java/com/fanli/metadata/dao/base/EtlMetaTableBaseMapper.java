@@ -34,5 +34,7 @@ public interface EtlMetaTableBaseMapper {
      */
     EtlMetaTableBase findTableById(Integer id);
 
+    int updateTblComment(@Param("tableId") Integer tableId,@Param("tableComment") String tableComment);
+
 
 }

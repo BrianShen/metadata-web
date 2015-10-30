@@ -30,4 +30,28 @@
     FROM etl_meta_column
     WHERE global_id=#{table_id} AND is_partition=#{isPartition} ORDER BY column_index
   </select>
+  <update id="updateColumn" parameterType="map">
+    UPDATE etl_meta_column
+    set column_comment=#{column.columnComment}
+    WHERE global_id=#{column.globalId} AND column_id=#{column.columnId}
+  </update>
+  <!--<update id="updateColumn" parameterType="map">-->
+    <!--UPDATE etl_meta_column-->
+    <!--<set>-->
+      <!--<if test="column_comment!=null">-->
+        <!--column_comment=#{columnComment},-->
+      <!--</if>-->
+      <!--<if test="column_access_code!=null">-->
+        <!--column_access_code=#{columnAccessCode},-->
+      <!--</if>-->
+      <!--<if test="hot_level!=null">-->
+        <!--hot_level=#{hotLevel},-->
+      <!--</if>-->
+      <!--<if test="last_update_user!=null">-->
+        <!--last_update_user=#{lastUpdateUser},-->
+      <!--</if>-->
+      <!--update_time=CURRENT_TIMESTAMP-->
+    <!--</set>-->
+    <!--WHERE global_id=#{globalId}-->
+  <!--</update>-->
 </mapper>

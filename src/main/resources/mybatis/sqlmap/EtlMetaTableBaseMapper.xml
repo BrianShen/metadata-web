@@ -43,6 +43,13 @@
     status=1 AND table_name LIKE CONCAT('%',#{keyword},'%')
   </select>
 
+  <!--更新表备注-->
+  <update id="updateTblComment" parameterType="map">
+    UPDATE etl_meta_table_base
+    set table_comment=#{tableComment}
+    WHERE global_table_id=#{tableId}
+  </update>
+
   <!--根据params参数列表查table 参数列表不包含id-->
   <select id="findTablesByParams" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBase" resultMap="BaseResultMap">
     SELECT

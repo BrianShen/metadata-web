@@ -13,13 +13,6 @@
             <small><span class="label label-success">hive</span></small>
             </h3>
         </div>
-        <div style="float: right;width: 100px;width: 60px">
-            <a class="btn btn-success">
-                <i class="icon-edit">编辑
-                </i>
-
-            </a>
-        </div>
 
 
     </div>
@@ -27,14 +20,28 @@
     <nav style="padding: 10px;margin-bottom: 18px">
         <ul id="modelTabs" class="nav nav-tabs">
             <li role="presentation" class="active"><a href="#example">数据样例</a></li>
-            <li role="presentation" ><a href="#tableComment">表的描述</a></li>
+            <li role="presentation" ><a href="#tableComment" ng-click="initModelDescEditAction()">表的描述</a></li>
             <li role="presentation"><a href="#father">表的上游血缘</a></li>
             <li role="presentation"><a href="#children">表的下游血缘</a></li>
         </ul>
         <!-- Tab panes -->
-        <div class="tab-content" style="padding: 10px;">
-            <div role="tabpanel" class="tab-pane" id="tableComment">
-
+        <div class="tab-content" style="padding: 10px; min-height: 50px">
+            <div id="tableComment" class="tab-pane fade in ">
+                <span class="model-desc-edit-btn">
+                    <a class="btn btn-default btn-operation model-edit" data-target="model-desc-wrapper"
+                       style="padding: 2px 5px; float: right">
+                        <i class="icon-pencil"></i>
+                        <span style="font-size: 12px;">编辑</span>
+                    </a>
+                </span>
+                <div class='model-desc-alert-info' style="float: left; width: 100%"></div>
+                <div id="model-desc-wrapper"></div>
+                <div class="panel-footer" style="display: none; text-align: center" id="modelDescBtnWrapper">
+                    <a class="btn btn-default btn-concel" id="modelDescConcelBtn">
+                        取消</a>
+                    <a class="btn btn-sm btn-success btn-submit" id="modelDescSubmitBtn" style="margin-left: 20px;">
+                        提交</a>
+                </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="father">
                 <ul>
@@ -53,7 +60,7 @@
             <div role="tabpanel" class="tab-pane active" id="example">
                 <div style="padding: 10px;">
                     <strong>{{model.exampleSql}}</strong>
-                    <button class="btn btn-success" ng-click="reviewSampleData()" id="sampleBtn">查询</button>
+                    <button class="btn btn-success" data-loading-text="正在查询..." ng-click="reviewSampleData()" id="sampleBtn">查询</button>
                 </div>
 
 
@@ -128,8 +135,8 @@
                     <div style="display: inline-block;" class="col-sm-6"><span >{{model.hiveMeta.storeFormat}}</span></div>
                 </div>
                 <div class="col-sm-6 col-xs-12 form-group">
-                    <span class="col-sm-8">表类型：</span>
-                    <div style="display: inline-block;" class="col-sm-6"><span >{{model.hiveMeta.tableType}}</span></div>
+                    <span class="col-sm-4">表类型：</span>
+                    <div style="display: inline-block;" class="col-sm-8"><span >{{model.hiveMeta.tableType}}</span></div>
                 </div>
 
             </div>
@@ -159,7 +166,7 @@
                         <button ng-show="!col_edit" ng-click="col_edit=!col_edit" class="btn-link">
                             <i class="icon-edit bigger-150"></i>
                         </button>
-                        <button ng-show="col_edit" ng-click="col_edit=!col_edit" class="btn-link">
+                        <button ng-show="col_edit" ng-click="updateColumns()" class="btn-link" data-loading-text="正在保存..." id="colUpdateBtn">
                             <i class="icon-save bigger-150"></i>
                         </button>
                     </div>
@@ -206,7 +213,7 @@
                         <button ng-show="!part_edit" ng-click="part_edit=!part_edit" class="btn-link">
                             <i class="icon-edit bigger-150"></i>
                         </button>
-                        <button ng-show="part_edit" ng-click="part_edit=!part_edit" class="btn-link">
+                        <button ng-show="part_edit" ng-click="updatePartitions()" class="btn-link">
                             <i class="icon-save bigger-150"></i>
                         </button>
                     </div>
@@ -218,10 +225,10 @@
                 <td>{{partition.columnIndex}}</td>
                 <td>{{partition.columnName}}</td>
                 <td>{{partition.columnType}}</td>
-                <td><div ng-show="!part_edit">{{column.columnComment}}</div>
+                <td><div ng-show="!part_edit">{{partition.columnComment}}</div>
                     <div ng-show="part_edit">
                     <#--<input  ng-model="column.columnComment" style="width: 80%;padding: 6px"/>-->
-                        <textarea ng-model="column.columnComment" class="col-sm-9"></textarea>
+                        <textarea ng-model="partition.columnComment" class="col-sm-9"></textarea>
                     </div>
                 </td>
             </tr>
@@ -233,7 +240,7 @@
 </#macro>
 
 <#macro lib>
-
+<link rel="stylesheet" href="/assets/css/edit/summernote.css"/>
 </#macro>
 
 <#macro js>
@@ -245,6 +252,7 @@
 
 </script>
 <script src="/assets/lib/ace/js/bootbox.min.js"></script>
+<script type="text/javascript" src="/assets/lib/edit/summernote.min.js"></script>
+<script type="text/javascript" src="/assets/lib/edit/summernote-zh-CN.js"></script>
 <script src="/assets/js/controller/hiveDetailController.js"></script>
-<script src="/assets/js/commonjs/hive_detail.js"></script>
 </#macro>

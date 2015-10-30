@@ -34,10 +34,10 @@
        </bean>
 
        <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-              <property name="driverClass" value="${driver}"></property>
-              <property name="jdbcUrl" value="${url}"></property>
-              <property name="user" value="root"></property>
-              <property name="password" value="root"></property>
+              <property name="driverClass" value="${jdbc.driver}"></property>
+              <property name="jdbcUrl" value="${jdbc.url}"></property>
+              <property name="user" value="${jdbc.username}"></property>
+              <property name="password" value="${jdbc.password}"></property>
               <!-- 初始化的连接数，该值应该在minPoolSize和maxPoolSize之间 -->
               <property name="initialPoolSize" value="${jdbc.initialPoolSize}"></property>
               <property name="minPoolSize" value="${jdbc.minPoolSize}"></property>

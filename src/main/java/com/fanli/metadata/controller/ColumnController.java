@@ -5,11 +5,9 @@ import com.fanli.metadata.entity.Result;
 import com.fanli.metadata.entity.base.EtlMetaColumn;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -46,5 +44,47 @@ public class ColumnController {
         }
 
     }
+
+//    @RequestMapping(method = RequestMethod.POST)
+//    @ResponseBody
+//    public Result updateColumns(@RequestParam("tableId") Long tableId,
+//                                @RequestParam("columnIds") String ids,
+//                                @RequestParam("columnComments") String comments) {
+//        Result result = new Result();
+//        String[] idList = ids.split("\\<\\*\\>");
+//        String[] comList = comments.split("\\<\\*\\>");
+//        if (idList.length != comList.length) {
+//            result.setIsSuccess(false);
+//            throw new RuntimeException("idList与commentList长度不一致！！");
+//        }
+//        for (int i = 0;i < idList.length;i ++) {
+//            EtlMetaColumn column = new EtlMetaColumn();
+//            column.setGlobalId(tableId);
+//            column.setColumnId(Integer.parseInt(idList[i]));
+//            column.setColumnComment(comList[i]);
+//            etlMetaColumnMapper.updateColumn(column);
+//        }
+//        result.setIsSuccess(true);
+//        return result;
+//    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    @ResponseBody
+    public Result updateColumns(@RequestParam("tableId") Long tableId,
+                                @RequestParam("columnIds") List<Integer> ids,
+                                @RequestParam("columnComments") List<String> comments) {
+        Result result = new Result();
+        for (int i = 0;i < ids.size();i ++) {
+            EtlMetaColumn column = new EtlMetaColumn();
+            column.setGlobalId(tableId);
+            column.setColumnId(ids.get(i));
+            column.setColumnComment(comments.get(i));
+            etlMetaColumnMapper.updateColumn(column);
+        }
+        result.setIsSuccess(true);
+        return result;
+    }
+
+
 
 }

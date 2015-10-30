@@ -95,7 +95,7 @@ div.container{
     padding: 3px 15px;
     text-align: left;
     color: #fff;
-    background-color: #e24e1f;
+    background-color: cadetblue;
     font-size: 16px;
     font-weight: bold;
 }
@@ -108,5 +108,78 @@ div.container{
     font-size: 16px;
     height: 30px;
     font-family: "Microsoft YaHei" !important;
+}
+
+
+.model-desc-edit-btn {
+    float: left;
+    width: 100%;
+    position: relative;
+    min-height: 1px;
+}
+
+.btn-operation {
+    color: #376ec2;
+    padding: 5px 6px;
+    border-radius: 5px !important;
+}
+
+.bootbox-body {
+    overflow: auto;
+}
+
+.modal-dialog {
+    width: 80%;
+}
+
+.navbar-default .navbar-brand {
+    color: #fff;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #fff;
+}
+
+.navbar-form-custom {
+    width: 70%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+span.twitter-typeahead {
+    vertical-align: top;
+}
+
+.search-group {
+    width: 900px;
+    /*text-align: left;*/
+    /*margin-left: 200px;*/
+}
+
+#search-input {
+    border-radius: 4px;
+    font: 16px/22px arial;
+}
+
+#search-input:hover, #search-input:focus {
+    border: 1px solid #0097cf;
+}
+
+.search-input-width {
+    width: 700px !important;
+}
+
+.btn-location {
+    vertical-align: text-top;
+}
+
+.navbar-form-custom {
+    width: 100%;
+    text-align: left;
+}
+.navbar-form {
+    padding-left: 0px;
+    padding-right: 0px;
 }
 

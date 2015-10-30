@@ -116,4 +116,21 @@ public class TableController {
         return map;
 
     }
+
+    @RequestMapping(value = "/{tableId}/comment",method = RequestMethod.POST)
+    @ResponseBody
+    public Result updateTableComment(@PathVariable("tableId") Integer tableId,
+                                        @RequestParam("tableComment") String tableComment) {
+        Result result = new Result();
+        try {
+            etlMetaTableBaseMapper.updateTblComment(tableId,tableComment);
+        }catch (Exception e) {
+            result.setIsSuccess(false);
+            result.setMsg("update table comment failed!");
+            return result;
+        }
+        result.setIsSuccess(true);
+        return result;
+    }
+
 }

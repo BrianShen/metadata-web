@@ -13,9 +13,13 @@
     <!--输入搜索自动补全-->
     <link rel="stylesheet" href="/assets/lib/typeahead/typeahead.css">
 <link rel="stylesheet" href="/assets/lib/ace/css/ace.min.css">
+    <link rel="stylesheet" href="/assets/lib/ace/css/ace-rtl.min.css">
+
     <link href="/assets/lib/bootstrap/bootstrap.min.css" rel="stylesheet"/>
     <#--<link href="/assets/css/ace.min.css" rel="stylesheet"/>-->
     <link rel="stylesheet" href="/assets/lib/ace/css/font-awesome.min.css"/>
+
+<@content.lib></@content.lib>
 
     <!-- page specific plugin styles -->
 
@@ -79,7 +83,7 @@
 <script type="text/javascript" src="/assets/lib/ace/js/jquery-2.0.3.min.js"></script>
 <script src="/assets/lib/bootstrap/bootstrap.min.js"></script>
 <script src="/assets/lib/typeahead/typeahead.bundle.min.js"></script>
-<@content.lib></@content.lib>
+
 
 <script src="/assets/lib/angular.min.js"></script>
 <script src="/assets/lib/angular-resource.min.js"></script>
