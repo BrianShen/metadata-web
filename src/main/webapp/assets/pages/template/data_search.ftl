@@ -17,7 +17,7 @@
         <form role="search">
             <div class="navbar-form navbar-form-custom input-group" >
                 <div class="search-group">
-                    <input type="text" required id="search-input" class="form-control search-input-width"
+                    <input type="text" required id="search-input" class="form-control search-input-width typeahead"
                            placeholder="表名" >
                     <button type="submit" id="search-btn" class="btn btn-sm btn-primary btn-location" data-loading-text="正在查询...">查询
                         <i class="icon-search icon-on-right bigger-110"></i>

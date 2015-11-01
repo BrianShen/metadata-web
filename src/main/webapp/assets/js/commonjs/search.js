@@ -25,6 +25,7 @@ $("#search-btn").click(function () {
     if(keyword == ''||keyword ==undefined) {
         return;
     }
+    $('.typeahead').typeahead('close');
     searchModelByKeyWord(keyword);
 });
 
@@ -35,6 +36,7 @@ function searchModelByKeyWord(keyWord) {
     if ($.trim($('#search-input').val()) === "") {
         $('#search-input').val(keyWord);
     }
+
     var requestData = {}, requestUrl = "/meta/tables";
     requestData.keyword = $.trim(keyWord);
     generateSearchEntrance(requestUrl, requestData);
@@ -103,9 +105,18 @@ function insertResult(data) {
         var $result_content = "<tr class='result'>"
             + "<td><a href='/meta/pages/model_detail?tableId=" + data[i].globalTableId + "' target='_blank'>" + data[i].tableName + "</a></td>"
             + "<td>" + data[i].owner + "</td>"
-            + "<td>" + data[i].storageType + "</td>"
+            + "<td><label class='label " + getLabelClass(data[i].storageType) + "'>" + data[i].storageType + "</label></td>"
             + "<td>" + cutStr(data[i].tableComment) + "</td></tr>";
         $("#hidden-result table").append($result_content);
+    }
+}
+
+function getLabelClass(type) {
+    switch (type) {
+        case 'hive':return 'label-success';
+        case 'mysql':return 'label-info';
+        case 'sqlserver':return 'label-warning';
+        default :return 'label-danger';
     }
 }
 

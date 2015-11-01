@@ -56,8 +56,9 @@
 }
 
 #search-result tbody tr td a:hover {
-    background-color: yellow;
-    color: white;
+    /*background-color: yellow;*/
+    /*color: white;/*/
+    text-decoration: none;
     font-size: 18px;
 }
 
