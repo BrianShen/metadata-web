@@ -29,11 +29,14 @@ public class ColumnController {
      */
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public Result<EtlMetaColumn> queryColumnByParam(@RequestParam("tableId")Integer tableId,
-                                                    @RequestParam("isPartition") Integer isPartition) {
+    public Result<EtlMetaColumn> queryColumnByParam(@RequestParam("tableId")Long tableId,
+                                                    @RequestParam(value = "isPartition",required = false) Integer isPartition) {
         Result<EtlMetaColumn> result = new Result<EtlMetaColumn>();
         try {
-            List<EtlMetaColumn> commonColumns = etlMetaColumnMapper.findColumnsByTableId(tableId,isPartition);
+            List<EtlMetaColumn> commonColumns = null;
+            if (isPartition != null) {
+                commonColumns = etlMetaColumnMapper.findHiveColumnsByTableId(tableId,isPartition);
+            } else commonColumns = etlMetaColumnMapper.findColumnsByTableId(tableId);
             result.setResults(commonColumns);
             result.setIsSuccess(true);
             result.setCount(commonColumns.size());

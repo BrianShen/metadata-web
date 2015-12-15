@@ -20,6 +20,14 @@ public class CommonUtils {
         StringBuffer sb = new StringBuffer();
         sb.append("SELECT * FROM " + db.toUpperCase() + "." + name.toUpperCase());
         if (metaPartition == null)  {
+            if (tableBase.getIsPartitionTable() == 1) {
+                for (EtlMetaColumn column:partitions) {
+                    if (column.getColumnIndex() == 0) {
+                        sb.append(" WHERE " + column.getColumnName() + " <> ''");
+                    }
+                }
+
+            }
             sb.append( " LIMIT 10");
             return sb.toString();
         } else {

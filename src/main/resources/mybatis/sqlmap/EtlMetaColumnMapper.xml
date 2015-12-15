@@ -25,10 +25,15 @@
     column_access_code, is_primary, is_foreign, is_partition, hot_level, add_time, update_time, 
     last_update_user
   </sql>
-  <select id="findColumnsByTableId" resultMap="BaseResultMap" parameterType="map">
+  <select id="findHiveColumnsByTableId" resultMap="BaseResultMap" parameterType="map">
     SELECT *
     FROM etl_meta_column
     WHERE global_id=#{table_id} AND is_partition=#{isPartition} ORDER BY column_index
+  </select>
+  <select id="findColumnsByTableId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    SELECT *
+    FROM etl_meta_column
+    WHERE global_id=#{table_id}  ORDER BY column_index
   </select>
   <update id="updateColumn" parameterType="map">
     UPDATE etl_meta_column

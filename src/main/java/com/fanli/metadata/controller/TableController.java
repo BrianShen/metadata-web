@@ -7,7 +7,9 @@ import com.fanli.metadata.dao.base.EtlMetaHiveTableMapper;
 import com.fanli.metadata.dao.base.EtlMetaPartitionMapper;
 import com.fanli.metadata.dao.base.EtlMetaTableBaseMapper;
 import com.fanli.metadata.entity.Result;
+import com.fanli.metadata.entity.Storage;
 import com.fanli.metadata.entity.base.*;
+import com.fanli.metadata.service.ModelService;
 import com.fanli.metadata.util.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +36,9 @@ public class TableController {
 
     @Autowired
     private EtlMetaPartitionMapper etlMetaPartitionMapper;
+
+    @Autowired
+    private ModelService modelService;
 
 
 
@@ -79,16 +84,15 @@ public class TableController {
 
     @RequestMapping(value = "/{tableId}",method = RequestMethod.GET)
     @ResponseBody
-    public Map<String,Object> getModelDetail(@PathVariable Integer tableId) {
-        Result result = new Result();
+    public Map<String,Object> getModelDetail(@PathVariable Long tableId) {
         Map<String,Object> map = new HashMap<String, Object>();
         EtlMetaTableBase model = etlMetaTableBaseMapper.findTableById(tableId);
         //根据table base表中信息初始化模型
         JSONObject modelData = (JSONObject) JSON.toJSON(model);
         String storage = model.getStorageType();
-        if ("hive".equals(storage)) {
+        if (Storage.HIVE.toString().equalsIgnoreCase(storage)) {
             //获取分区信息
-            List<EtlMetaColumn> partitions = etlMetaColumnMapper.findColumnsByTableId(tableId,1);
+            List<EtlMetaColumn> partitions = etlMetaColumnMapper.findHiveColumnsByTableId(tableId,1);
             if (partitions.size() > 0) {
                 modelData.put("isPartitionTable",true);
             }else modelData.put("isPartitionTable",false);
@@ -110,16 +114,22 @@ public class TableController {
             //获取hive表大小
 
 
+        } else if (Storage.MYSQL.toString().equalsIgnoreCase(storage)||Storage.SQLSERVER.toString().equalsIgnoreCase(storage)) {
+
+        }else if (Storage.INDICATOR.toString().equalsIgnoreCase(storage)) {
+            EtlMetaIndicator indicator =  modelService.getIndicatorByGlobalId(tableId);
+            if (indicator != null) {
+                modelData.put("indicator",indicator);
+            }
         }
         map.put("model",modelData);
-
         return map;
 
     }
 
     @RequestMapping(value = "/{tableId}/comment",method = RequestMethod.POST)
     @ResponseBody
-    public Result updateTableComment(@PathVariable("tableId") Integer tableId,
+    public Result updateTableComment(@PathVariable("tableId") Long tableId,
                                         @RequestParam("tableComment") String tableComment) {
         Result result = new Result();
         try {

@@ -12,12 +12,14 @@
     <!-- basic styles -->
     <!--输入搜索自动补全-->
     <link rel="stylesheet" href="/assets/lib/typeahead/typeahead.css">
-<link rel="stylesheet" href="/assets/lib/ace/css/ace.min.css">
+
     <link rel="stylesheet" href="/assets/lib/ace/css/ace-rtl.min.css">
 
     <link href="/assets/lib/bootstrap/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/assets/lib/ace/css/ace.min.css">
     <#--<link href="/assets/css/ace.min.css" rel="stylesheet"/>-->
-    <link rel="stylesheet" href="/assets/lib/ace/css/font-awesome.min.css"/>
+
 
 <@content.lib></@content.lib>
 
@@ -82,6 +84,9 @@
 
 <script type="text/javascript" src="/assets/lib/ace/js/jquery-2.0.3.min.js"></script>
 <script src="/assets/lib/bootstrap/bootstrap.min.js"></script>
+    <!-- ace scripts -->
+    <script src="/assets/lib/ace/js/ace-elements.min.js"></script>
+    <script src="/assets/lib/ace/js/ace.min.js"></script>
 <script src="/assets/lib/typeahead/typeahead.bundle.min.js"></script>
 
 
@@ -94,6 +99,9 @@
 <script src="/assets/js/app.js"></script>
 
 <script src="/assets/js/controller/sidebarCtrl.js"></script>
+    <script src="/assets/js/service/restful_service.js"></script>
+    <script src="/assets/js/service/common_service.js"></script>
+
 
 <script src="/assets/js/commonjs/search.js"></script>
 <@content.js/>

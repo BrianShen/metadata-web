@@ -72,7 +72,7 @@ function generateSearchEntrance(requestUrl, requestData) {
             }
             else {
                 var $resultInfo = "<div class='search-result'><table class='table table-hover' id='search-result'>"
-                    + "<thead><tr><th style='width:35%'>名称</th><th style='width:17%'>开发者</th><th style='width:15%'>类型</th><th style='width:33%'>描述</th></tr></thead><tbody></tbody></table>"
+                    + "<thead><tr><th style='width:30%'>名称</th><th style='width:15%'>开发者</th><th style='width:15%'>类型</th><th style='width:15%'>库名</th><th style='width:25%'>描述</th></tr></thead><tbody></tbody></table>"
                     + "<div class='page-bar clearfix'><div class='pagination-bav'><span id='resultNums'></span>"
                     + "<div id='Pagination' class='pagination'></div></div>"
                     + "</div></div>";
@@ -103,9 +103,10 @@ function insertResult(data) {
     $("#hidden-result table").empty();
     for (var i = 0; i < data.length; i++) {
         var $result_content = "<tr class='result'>"
-            + "<td><a href='/meta/pages/model_detail?tableId=" + data[i].globalTableId + "' target='_blank'>" + data[i].tableName + "</a></td>"
+            + "<td><a href='/meta/pages/model_detail?mid=" + data[i].globalTableId + "' target='_blank'>" + data[i].tableName + "</a></td>"
             + "<td>" + data[i].owner + "</td>"
             + "<td><label class='label " + getLabelClass(data[i].storageType) + "'>" + data[i].storageType + "</label></td>"
+            + "<td>" + data[i].db + "</td>"
             + "<td>" + cutStr(data[i].tableComment) + "</td></tr>";
         $("#hidden-result table").append($result_content);
     }

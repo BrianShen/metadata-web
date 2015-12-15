@@ -12,7 +12,7 @@
             <property name="suppressDate" value="true"/>
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/dev" userId="root" password="root"></jdbcConnection>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.100.107:3306/ctl_logdb" userId="root" password="root"></jdbcConnection>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
@@ -27,10 +27,11 @@
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
-        <table tableName="etl_meta_table_base" domainObjectName="EtlMetaTableBase"/>
-        <table tableName="etl_meta_hivetable" domainObjectName="EtlMetaHiveTable"/>
-        <table tableName="etl_meta_column" domainObjectName="EtlMetaColumn"/>
-        <table tableName="etl_meta_partition" domainObjectName="EtlMetaPartition"/>
+        <!--<table tableName="etl_meta_table_base" domainObjectName="EtlMetaTableBase"/>-->
+        <!--<table tableName="etl_meta_hivetable" domainObjectName="EtlMetaHiveTable"/>-->
+        <!--<table tableName="etl_meta_column" domainObjectName="EtlMetaColumn"/>-->
+        <!--<table tableName="etl_meta_partition" domainObjectName="EtlMetaPartition"/>-->
+        <table tableName="etl_meta_indicator" domainObjectName="EtlMetaIndicator"/>
 
 
     </context>

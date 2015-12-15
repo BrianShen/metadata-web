@@ -20,7 +20,7 @@
     line_terminated, store_format
   </sql>
 
-  <select id="findHiveMetaByTableId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="findHiveMetaByTableId" parameterType="java.lang.Long" resultMap="BaseResultMap">
     SELECT <include refid="Base_Column_List"/> FROM etl_meta_hivetable WHERE global_id=#{table_id}
   </select>
 

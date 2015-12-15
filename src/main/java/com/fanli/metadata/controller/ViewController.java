@@ -1,6 +1,7 @@
 package com.fanli.metadata.controller;
 
 import com.fanli.metadata.dao.base.EtlMetaTableBaseMapper;
+import com.fanli.metadata.entity.Storage;
 import com.fanli.metadata.entity.base.EtlMetaTableBase;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,17 +35,17 @@ public class ViewController {
     }
 
     @RequestMapping(value = "/model_detail",method = RequestMethod.GET)
-    public ModelAndView modelDetailView(@RequestParam(value = "tableId",required = true,defaultValue = "") Integer tableId) throws Exception {
+    public ModelAndView modelDetailView(@RequestParam(value = "mid",required = true,defaultValue = "") Long tableId) throws Exception {
         ModelAndView mv = new ModelAndView("/main/index");
         EtlMetaTableBase tableBase = etlMetaTableBaseMapper.findTableById(tableId);
         String type = tableBase.getStorageType();
         if (StringUtils.hasLength(type)) {
-            if (type.equals("hive")) {
+            if (type.equalsIgnoreCase("hive")) {
                 mv.addObject("page","hive_detail");
-            } else if (type.equals("mysql")) {
-                mv.addObject("page","mysql_detail");
-            } else if (type.equals("sqlserver")) {
-                mv.addObject("page","sqlserver_detail");
+            } else if (type.equalsIgnoreCase("mysql")||type.equalsIgnoreCase("sqlserver")) {
+                mv.addObject("page","detail");
+            } else if (Storage.INDICATOR.toString().equalsIgnoreCase(type)) {
+              mv.addObject("page","indicator");
             } else throw new Exception("The storage type of the table is not supported now!");
         } else {
             throw new RuntimeException("The table storage type cannot be null or empty");

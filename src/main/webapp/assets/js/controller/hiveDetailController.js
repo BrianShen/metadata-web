@@ -1,22 +1,32 @@
 /**
- * Created by Administrator on 2015/10/5.
+ * Created by wei.shen on 2015/10/5.
  */
 
 metaApp.controller("HiveDetailCtrl",function($scope,$resource) {
+    /**
+     * 定义http资源
+     */
     var model = $resource("/meta/tables/:tableId",{tableId:"@tableId"});
     var columns = $resource("/meta/columns",{tableId:'@tableId',isPartition:'@isPartition'});
     var columnsComment = $resource("/meta/columns",{tableId:'@tableId',columnIds:'@columnIds',columnComments:'@columnComments'});
     var queryHive = $resource("/meta/hive_resource/query",{sql:"@sql"});
     var updateTableComment = $resource("/meta/tables/:tableId/comment",{tableId:'@tableId',tableComment:'@tableComment'});
 
+    //加载页面时初始化模型信息和列信息
     init();
 
+    /**
+     * 初始化页面
+     */
     function init() {
-        $scope.tableId = parserUrl("tableId");
+        $scope.tableId = parserUrl("mid");
         getModelInfo();
         getColumns();
     }
 
+    /**
+     * 提交基础列更新
+     */
     $scope.updateColumns = function() {
         $bt = $('#colUpdateBtn');
         $bt.button('loading');
@@ -40,6 +50,9 @@ metaApp.controller("HiveDetailCtrl",function($scope,$resource) {
         )
     }
 
+    /**
+     * 提交分区列更新
+     */
     $scope.updatePartitions = function() {
         var parts = $scope.model.partitions;
         columnsComment.save(
@@ -59,14 +72,28 @@ metaApp.controller("HiveDetailCtrl",function($scope,$resource) {
         )
     }
 
+    /**
+     * 按顺序获取列注释数组
+     * @param cols
+     * @returns {Array}
+     */
     var getComs = function(cols) {
         var coms = [];
         for(var i = 0;i < cols.length;i ++) {
-            coms.push(cols[i].columnComment);
+            if(cols[i].columnComment === null) {
+                coms.push("");
+            } else {
+                coms.push(cols[i].columnComment);
+            }
         }
         return coms;
     }
 
+    /**
+     * 按顺序获取列id数组
+     * @param cols
+     * @returns {Array}
+     */
     var getColIds = function(cols) {
         var ids = [];
         for(var i = 0;i < cols.length;i ++) {
@@ -92,7 +119,9 @@ metaApp.controller("HiveDetailCtrl",function($scope,$resource) {
     //}
 
 
-
+    /**
+     * 点击列注释tab初始化
+     */
     $scope.initModelDescEditAction = function () {
         var $contentView = $("#model-desc-wrapper");
         var $html = $contentView.html();
@@ -145,6 +174,12 @@ metaApp.controller("HiveDetailCtrl",function($scope,$resource) {
         });
     }
 
+    /**
+     * 警示条
+     * @param $des
+     * @param cssClass
+     * @param message
+     */
     function getAlertMessage($des, cssClass, message) {
         var alert = '<div class="alert fade in common-alert">' + message + '<a class="close" onclick="$(this).parent().hide()">×</a></div>';
         var $alert = $(alert);
@@ -157,6 +192,11 @@ metaApp.controller("HiveDetailCtrl",function($scope,$resource) {
         }, 5000);
     }
 
+    /**
+     * 还原表描述数据
+     * @param htmlContent
+     * @returns {*}
+     */
     function getActualContent(htmlContent) {
         if (htmlContent === '暂无数据')
             return '';
@@ -191,6 +231,11 @@ metaApp.controller("HiveDetailCtrl",function($scope,$resource) {
         },function() { $me.button('reset');});
     }
 
+    /**
+     * 组装样例数据html代码
+     * @param data
+     * @returns {string}
+     */
     var getSampleDataHTML = function (data) {
         var $tableResult = "<table class='table table-bordered table-hover'><thead><tr>";
         if (data.results.length > 0) {

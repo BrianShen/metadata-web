@@ -32,9 +32,9 @@ public interface EtlMetaTableBaseMapper {
      * @param id
      * @return
      */
-    EtlMetaTableBase findTableById(Integer id);
+    EtlMetaTableBase findTableById(Long id);
 
-    int updateTblComment(@Param("tableId") Integer tableId,@Param("tableComment") String tableComment);
+    int updateTblComment(@Param("tableId") Long tableId,@Param("tableComment") String tableComment);
 
 
 }

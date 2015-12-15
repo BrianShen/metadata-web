@@ -6,5 +6,5 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface EtlMetaHiveTableMapper {
-    EtlMetaHiveTable findHiveMetaByTableId(Integer table_id);
+    EtlMetaHiveTable findHiveMetaByTableId(Long table_id);
 }

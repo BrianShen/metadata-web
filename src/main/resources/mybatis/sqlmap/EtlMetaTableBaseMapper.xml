@@ -82,7 +82,7 @@
   </select>
 
   <!--根据主键id查询table-->
-  <select id="findTableById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="findTableById" parameterType="java.lang.Long" resultMap="BaseResultMap">
     SELECT * FROM etl_meta_table_base WHERE status=1 AND global_table_id = #{id}
   </select>
 
