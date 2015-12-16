@@ -14,6 +14,12 @@ public interface EtlMetaTableBaseMapper {
     List<String> listAllTableNames();
 
     /**
+     * 查询所有有效的表
+     * @return
+     */
+    List<EtlMetaTableBase> queryIndicatorTables();
+
+    /**
      * 根据关键字模糊查询表
      * @param keyword
      * @return 模型信息列表
@@ -35,6 +41,11 @@ public interface EtlMetaTableBaseMapper {
     EtlMetaTableBase findTableById(Long id);
 
     int updateTblComment(@Param("tableId") Long tableId,@Param("tableComment") String tableComment);
+
+    int saveTableBase(EtlMetaTableBase tableBase);
+
+    int updateIndicator(@Param("tableId") Long tableId,@Param("tableComment") String tableComment,@Param("refreshCycle")String refreshCycle,
+                        @Param("tableName")String tableName) ;
 
 
 }

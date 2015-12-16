@@ -6,7 +6,7 @@
 <div class="row" ng-controller="IndicatorCtrl" style="margin-bottom: 120px">
     <div class="col-sm-12" style="text-align: left;vertical-align: bottom">
 
-        <div  class="page-header">
+        <div class="page-header">
             <h3><span ng-bind="model.tableName"></span>
                 <small><span class="text-muted">“{{model.tableComment===''?'暂无描述':model.tableComment}}”</span></small>
             </h3>
@@ -14,7 +14,7 @@
 
 
     </div>
-    <#--<hr size="1" noshade="noshade" style="border:1px #cccccc dotted;width: 98%">-->
+<#--<hr size="1" noshade="noshade" style="border:1px #cccccc dotted;width: 98%">-->
     <div class="row">
         <div class="col-xs-12">
             <!-- PAGE CONTENT BEGINS -->
@@ -52,32 +52,47 @@
 
             <div class="tab-content no-border padding-24">
                 <div id="faq-tab-1" class="tab-pane fade in active">
-                    <#--<pre  id="cal"  ng-bind="model.indicator.calLogic">-->
+                <#--<pre  id="cal"  ng-bind="model.indicator.calLogic">-->
 
-                    <#--</pre>-->
-                        <prettify target="model.indicator.calLogic">
+                <#--</pre>-->
+                    <prettify target="model.indicator.calLogic">
 
-                                <pre class="prettyprint lang-sql linenums">
-                                {{target}}
-                            </pre>
+                        <pre class="prettyprint linenums">
+                            {{target}}
+                        </pre>
 
-
-                        </prettify>
+                    </prettify>
                 </div>
                 <div id="faq-tab-2" class="tab-pane fade in">
+                    <div class="col-sm-10">
+                        <table class="table table-bordered table-hover">
+                            <tbody>
+                            <tr>
+                                <td class="col-sm-3"> 负责人 </td>
+                                <td class="col-sm-5">{{model.indicator.owner}}</td>
+                            </tr>
+                            <tr>
+                                <td class="col-sm-3"> 周期 </td>
+                                <td class="col-sm-5">{{model.indicator.cycle}}</td>
+                            </tr>
+                            <tr>
+                                <td class="col-sm-3"> 详细描述 </td>
+                                <td class="col-sm-5">{{model.indicator.detailDesc}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
                 </div>
                 <div id="faq-tab-3" class="tab-pane fade in">
-                    333
+
                 </div>
                 <div id="faq-tab-4" class="tab-pane fade in">
-                    444
+
                 </div>
             </div>
         </div>
     </div>
-
-
 
 
 </div>

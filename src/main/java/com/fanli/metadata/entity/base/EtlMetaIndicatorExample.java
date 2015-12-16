@@ -433,6 +433,76 @@ public class EtlMetaIndicatorExample {
             addCriterion("cycle not between", value1, value2, "cycle");
             return (Criteria) this;
         }
+
+        public Criteria andDetailDescIsNull() {
+            addCriterion("detail_desc is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDetailDescIsNotNull() {
+            addCriterion("detail_desc is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDetailDescEqualTo(String value) {
+            addCriterion("detail_desc =", value, "detailDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andDetailDescNotEqualTo(String value) {
+            addCriterion("detail_desc <>", value, "detailDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andDetailDescGreaterThan(String value) {
+            addCriterion("detail_desc >", value, "detailDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andDetailDescGreaterThanOrEqualTo(String value) {
+            addCriterion("detail_desc >=", value, "detailDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andDetailDescLessThan(String value) {
+            addCriterion("detail_desc <", value, "detailDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andDetailDescLessThanOrEqualTo(String value) {
+            addCriterion("detail_desc <=", value, "detailDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andDetailDescLike(String value) {
+            addCriterion("detail_desc like", value, "detailDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andDetailDescNotLike(String value) {
+            addCriterion("detail_desc not like", value, "detailDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andDetailDescIn(List<String> values) {
+            addCriterion("detail_desc in", values, "detailDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andDetailDescNotIn(List<String> values) {
+            addCriterion("detail_desc not in", values, "detailDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andDetailDescBetween(String value1, String value2) {
+            addCriterion("detail_desc between", value1, value2, "detailDesc");
+            return (Criteria) this;
+        }
+
+        public Criteria andDetailDescNotBetween(String value1, String value2) {
+            addCriterion("detail_desc not between", value1, value2, "detailDesc");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

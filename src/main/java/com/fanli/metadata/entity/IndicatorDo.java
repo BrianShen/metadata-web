@@ -1,6 +1,10 @@
-package com.fanli.metadata.entity.base;
+package com.fanli.metadata.entity;
 
-public class EtlMetaIndicator {
+/**
+ * Created by wei.shen on 2015/12/16.
+ */
+public class IndicatorDo {
+
     private Integer id;
 
     private Long globalId;
@@ -12,6 +16,12 @@ public class EtlMetaIndicator {
     private String cycle;
 
     private String detailDesc;
+
+    private String name;
+
+    private String comment;
+
+    private Byte status;
 
     public Integer getId() {
         return id;
@@ -34,7 +44,7 @@ public class EtlMetaIndicator {
     }
 
     public void setCalLogic(String calLogic) {
-        this.calLogic = calLogic == null ? null : calLogic.trim();
+        this.calLogic = calLogic;
     }
 
     public String getOwner() {
@@ -42,7 +52,7 @@ public class EtlMetaIndicator {
     }
 
     public void setOwner(String owner) {
-        this.owner = owner == null ? null : owner.trim();
+        this.owner = owner;
     }
 
     public String getCycle() {
@@ -50,7 +60,7 @@ public class EtlMetaIndicator {
     }
 
     public void setCycle(String cycle) {
-        this.cycle = cycle == null ? null : cycle.trim();
+        this.cycle = cycle;
     }
 
     public String getDetailDesc() {
@@ -58,6 +68,30 @@ public class EtlMetaIndicator {
     }
 
     public void setDetailDesc(String detailDesc) {
-        this.detailDesc = detailDesc == null ? null : detailDesc.trim();
+        this.detailDesc = detailDesc;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public Byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(Byte status) {
+        this.status = status;
     }
 }

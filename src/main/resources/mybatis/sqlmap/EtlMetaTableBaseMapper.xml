@@ -33,6 +33,15 @@
     etl_meta_table_base
     where status=1
   </select>
+
+  <!--user defined-->
+  <select id="queryIndicatorTables" resultMap="BaseResultMap">
+    select
+    *
+    from
+    etl_meta_table_base
+    where status=1 and storage_type = 'indicator'
+  </select>
   <!--表名模糊搜索-->
   <select id="findTablesByNameFuzzy" parameterType="java.lang.String" resultMap="BaseResultMap">
     SELECT
@@ -47,6 +56,12 @@
   <update id="updateTblComment" parameterType="map">
     UPDATE etl_meta_table_base
     set table_comment=#{tableComment}
+    WHERE global_table_id=#{tableId}
+  </update>
+
+  <update id="updateIndicator" parameterType="map">
+    UPDATE etl_meta_table_base
+    set table_comment=#{tableComment},refresh_cycle=#{refreshCycle},table_name=#{tableName}
     WHERE global_table_id=#{tableId}
   </update>
 
@@ -85,5 +100,12 @@
   <select id="findTableById" parameterType="java.lang.Long" resultMap="BaseResultMap">
     SELECT * FROM etl_meta_table_base WHERE status=1 AND global_table_id = #{id}
   </select>
+
+  <insert id="saveTableBase" parameterType="com.fanli.metadata.entity.base.EtlMetaTableBase" useGeneratedKeys="true"
+          keyProperty="globalTableId">
+    INSERT INTO etl_meta_table_base(table_name,owner,developer,storage_type,table_comment,refresh_cycle,status,add_time)
+    VALUES
+    (#{tableName},#{owner},#{developer},#{storageType},#{tableComment},#{refreshCycle},#{status},#{addTime})
+  </insert>
 
 </mapper>

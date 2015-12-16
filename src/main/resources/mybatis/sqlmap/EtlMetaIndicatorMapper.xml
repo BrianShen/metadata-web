@@ -7,6 +7,7 @@
     <result column="cal_logic" property="calLogic" jdbcType="VARCHAR" />
     <result column="owner" property="owner" jdbcType="VARCHAR" />
     <result column="cycle" property="cycle" jdbcType="VARCHAR" />
+    <result column="detail_desc" property="detailDesc" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, global_id, cal_logic, owner, cycle
+    id, global_id, cal_logic, owner, cycle, detail_desc
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fanli.metadata.entity.base.EtlMetaIndicatorExample" >
     select
@@ -101,9 +102,11 @@
   </delete>
   <insert id="insert" parameterType="com.fanli.metadata.entity.base.EtlMetaIndicator" >
     insert into etl_meta_indicator (id, global_id, cal_logic, 
-      owner, cycle)
+      owner, cycle, detail_desc
+      )
     values (#{id,jdbcType=INTEGER}, #{globalId,jdbcType=BIGINT}, #{calLogic,jdbcType=VARCHAR}, 
-      #{owner,jdbcType=VARCHAR}, #{cycle,jdbcType=VARCHAR})
+      #{owner,jdbcType=VARCHAR}, #{cycle,jdbcType=VARCHAR}, #{detailDesc,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.fanli.metadata.entity.base.EtlMetaIndicator" >
     insert into etl_meta_indicator
@@ -123,6 +126,9 @@
       <if test="cycle != null" >
         cycle,
       </if>
+      <if test="detailDesc != null" >
+        detail_desc,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -139,6 +145,9 @@
       </if>
       <if test="cycle != null" >
         #{cycle,jdbcType=VARCHAR},
+      </if>
+      <if test="detailDesc != null" >
+        #{detailDesc,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -166,6 +175,9 @@
       <if test="record.cycle != null" >
         cycle = #{record.cycle,jdbcType=VARCHAR},
       </if>
+      <if test="record.detailDesc != null" >
+        detail_desc = #{record.detailDesc,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -177,7 +189,8 @@
       global_id = #{record.globalId,jdbcType=BIGINT},
       cal_logic = #{record.calLogic,jdbcType=VARCHAR},
       owner = #{record.owner,jdbcType=VARCHAR},
-      cycle = #{record.cycle,jdbcType=VARCHAR}
+      cycle = #{record.cycle,jdbcType=VARCHAR},
+      detail_desc = #{record.detailDesc,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -197,6 +210,9 @@
       <if test="cycle != null" >
         cycle = #{cycle,jdbcType=VARCHAR},
       </if>
+      <if test="detailDesc != null" >
+        detail_desc = #{detailDesc,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -205,7 +221,8 @@
     set global_id = #{globalId,jdbcType=BIGINT},
       cal_logic = #{calLogic,jdbcType=VARCHAR},
       owner = #{owner,jdbcType=VARCHAR},
-      cycle = #{cycle,jdbcType=VARCHAR}
+      cycle = #{cycle,jdbcType=VARCHAR},
+      detail_desc = #{detailDesc,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
