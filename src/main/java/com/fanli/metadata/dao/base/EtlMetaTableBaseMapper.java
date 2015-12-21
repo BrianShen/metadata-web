@@ -47,5 +47,6 @@ public interface EtlMetaTableBaseMapper {
     int updateIndicator(@Param("tableId") Long tableId,@Param("tableComment") String tableComment,@Param("refreshCycle")String refreshCycle,
                         @Param("tableName")String tableName) ;
 
+    int removeRecordByGlobalId(Long globalId);
 
 }

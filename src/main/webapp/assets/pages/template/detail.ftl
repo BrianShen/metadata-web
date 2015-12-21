@@ -1,4 +1,27 @@
+<#macro top>
+<div class="breadcrumbs" id="breadcrumbs">
+    <script type="text/javascript">
+        try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+    </script>
 
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="#">Home</a>
+        </li>
+        <li class="active">Detail</li>
+    </ul><!-- .breadcrumb -->
+
+    <div class="nav-search" id="nav-search">
+        <form class="form-search">
+                        <span class="input-icon">
+                            <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                            <i class="fa fa-search nav-search-icon"></i>
+                        </span>
+        </form>
+    </div><!-- #nav-search -->
+</div>
+</#macro>
 
 <#macro content>
 
@@ -73,10 +96,10 @@
                 <td class="col-sm-4">描述
                     <div style="float: right">
                         <button ng-show="!col_edit" ng-click="col_edit=!col_edit" class="btn-link">
-                            <i class="icon-edit bigger-150"></i>
+                            <i class="fa fa-edit bigger-150"></i>
                         </button>
                         <button ng-show="col_edit" ng-click="updateColumns()" class="btn-link" data-loading-text="正在保存..." id="colUpdateBtn">
-                            <i class="icon-save bigger-150"></i>
+                            <i class="fa fa-save bigger-150"></i>
                         </button>
                     </div>
                 </td>
@@ -95,7 +118,7 @@
                         <textarea ng-model="column.columnComment" class="col-sm-9"></textarea>
                     </div>
                 </td>
-                <td><i class="icon-key" ng-show="column.isPrimary===1"></i> </td>
+                <td><i class="fa fa-key" ng-show="column.isPrimary===1"></i> </td>
             </tr>
             </tbody>
         </table>

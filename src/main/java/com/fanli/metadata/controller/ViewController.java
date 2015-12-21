@@ -36,7 +36,7 @@ public class ViewController {
 
     @RequestMapping(value = "/model_detail",method = RequestMethod.GET)
     public ModelAndView modelDetailView(@RequestParam(value = "mid",required = true,defaultValue = "") Long tableId) throws Exception {
-        ModelAndView mv = new ModelAndView("/main/index");
+        ModelAndView mv = new ModelAndView("main/index");
         EtlMetaTableBase tableBase = etlMetaTableBaseMapper.findTableById(tableId);
         String type = tableBase.getStorageType();
         if (StringUtils.hasLength(type)) {

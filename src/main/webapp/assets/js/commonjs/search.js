@@ -84,8 +84,8 @@ function generateSearchEntrance(requestUrl, requestData) {
                 $('#resultNums').html("共搜索到 " + data.count + " 条结果");
                 //获得热门访问模型
 //                getVisitTopModels();
-                $me.button('reset');
             }
+            $me.button('reset');
         },
         error: function (errorData) {
             $('div#content-result').html("<div class='alert fade in alert-danger'>error code: " + errorData.status + " 搜索请求发送失败，请重试!</div>");

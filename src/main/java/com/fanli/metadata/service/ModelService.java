@@ -39,13 +39,13 @@ public class ModelService {
     @Transactional(propagation= Propagation.REQUIRES_NEW,
             isolation= Isolation.READ_COMMITTED, timeout=3)
     public void addIndecator(String calLogic,String owner,String cycle,String name,
-                             String storage_type,Byte status,String comment,String detailDesc) {
+                             String storage_type,Byte status,String detailDesc) {
         EtlMetaTableBase base = new EtlMetaTableBase();
         base.setOwner(owner);
         base.setDeveloper(owner);
         base.setTableName(name);
         base.setRefreshCycle(cycle);
-        base.setTableComment(comment);
+        base.setTableComment(detailDesc);
         base.setStorageType(storage_type);
         base.setStatus(status);
         Date now = new Date();
@@ -87,8 +87,8 @@ public class ModelService {
     public List<IndicatorDo> getIndicators() {
         List<IndicatorDo> ret = new ArrayList<IndicatorDo>();
         List<EtlMetaTableBase> bases = etlMetaTableBaseMapper.queryIndicatorTables();
-        IndicatorDo indicatorDo = new IndicatorDo();
         for (EtlMetaTableBase base : bases) {
+            IndicatorDo indicatorDo = new IndicatorDo();
             indicatorDo.setComment(base.getTableComment());
             indicatorDo.setName(base.getTableName());
             EtlMetaIndicator indicator = findOneIndicatorByGlobalId(base.getGlobalTableId());
@@ -96,9 +96,23 @@ public class ModelService {
             indicatorDo.setCycle(indicator.getCycle());
             indicatorDo.setId(indicator.getId());
             indicatorDo.setDetailDesc(indicator.getDetailDesc());
+            indicatorDo.setGlobalId(indicator.getGlobalId());
+            indicatorDo.setOwner(indicator.getOwner());
             ret.add(indicatorDo);
         }
         return ret;
+    }
+
+    @Transactional(propagation= Propagation.REQUIRES_NEW,
+            isolation= Isolation.READ_COMMITTED, timeout=3)
+    public int deleteIndicatorById(Long id) {
+        if(id == null) return 0;
+        int ret1 = etlMetaTableBaseMapper.removeRecordByGlobalId(id);
+        EtlMetaIndicatorExample example = new EtlMetaIndicatorExample();
+        example.or().andGlobalIdEqualTo(id);
+        int ret2 = etlMetaIndicatorMapper.deleteByExample(example);
+        if (ret1 == 1 && ret2 == 1) return 1;
+        return 0;
     }
 
 

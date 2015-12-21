@@ -24,6 +24,12 @@ metaApp.factory('restfulService',function($resource,$http,$q){
         }),
 
         columnsComment : $resource("/meta/columns",{tableId:'@tableId',columnIds:'@columnIds',
-            columnComments:'@columnComments'})
+            columnComments:'@columnComments'}),
+
+        indicators : $resource("/meta/indicators"),
+
+        indicator : $resource("/meta/indicators/:id",{id:'@id'})
+
+
     }
 })

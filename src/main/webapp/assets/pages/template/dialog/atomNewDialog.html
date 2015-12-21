@@ -1,0 +1,80 @@
+<div class="modal-header">
+    <h4 class="modal-title"><i class="fa fa-edit"></i> {{msg.headerText}}</h4>
+</div>
+
+<div class="modal-body">
+    <div  class="row">
+        <div id="generator">
+            <form class="form-horizontal" >
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="atom_name"> 指标名 </label>
+
+                    <div class="col-sm-9">
+                        <input type="text"  ng-model="atom.name" id="atom_name" name="name" placeholder="atom name" class="col-xs-10 col-sm-8" required />
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="atom_desc"> 指标描述 </label>
+
+                    <div class="col-sm-9">
+                        <textarea type="text" ng-model="atom.detailDesc" name="detail_desc" id="atom_desc" placeholder="detailed description"
+                                  class="col-xs-10 col-sm-8 " required></textarea>
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="atom_owner"> 负责人 </label>
+
+                    <div class="col-sm-9">
+                        <select class="col-xs-10 col-sm-8" ng-model="atom.owner" name="owner" placeholder="username" id="atom_owner" required>
+                            <option value="沈伟">沈伟</option>
+                            <option value="王大平">王大平</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="atom_cycle"> 周期 </label>
+
+                    <div class="col-sm-9">
+                        <select class="col-xs-10 col-sm-8" ng-model="atom.cycle" name="cycle"
+                                placeholder="username" id="atom_cycle"
+                                ng-options="k as v for (k,v) in cycleOption"
+                                required>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="atom_sql"> 计算逻辑 </label>
+
+                    <div class="col-sm-9">
+                        <textarea  ng-model="atom.calLogic" type="text" name="calLogic"
+                                  class="col-xs-10 col-sm-8" id="atom_sql" rows="5" cols="40" wrap="hard" required></textarea>
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="center ">
+
+                    <button class="btn btn-danger"  type="reset">reset</button>
+                    <button class="btn btn-info"  type="submit" ng-click="submitIndicator()">submit</button>
+                    <label class="text {{alertClass}}">{{alertText}}</label>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

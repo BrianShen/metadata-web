@@ -1,4 +1,27 @@
+<#macro top>
+<div class="breadcrumbs" id="breadcrumbs">
+    <script type="text/javascript">
+        try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+    </script>
 
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="#">Home</a>
+        </li>
+        <li class="active">Detail</li>
+    </ul><!-- .breadcrumb -->
+
+    <div class="nav-search" id="nav-search">
+        <form class="form-search">
+                        <span class="input-icon">
+                            <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                            <i class="fa fa-search nav-search-icon"></i>
+                        </span>
+        </form>
+    </div><!-- #nav-search -->
+</div>
+</#macro>
 
 <#macro content>
 <div class="row">
@@ -30,7 +53,7 @@
                 <span class="model-desc-edit-btn">
                     <a class="btn btn-default btn-operation model-edit" data-target="model-desc-wrapper"
                        style="padding: 2px 5px; float: right">
-                        <i class="icon-pencil"></i>
+                        <i class="fa fa-pencil"></i>
                         <span style="font-size: 12px;">编辑</span>
                     </a>
                 </span>
@@ -164,10 +187,10 @@
                 <td class="col-sm-5">描述
                     <div style="float: right">
                         <button ng-show="!col_edit" ng-click="col_edit=!col_edit" class="btn-link">
-                            <i class="icon-edit bigger-150"></i>
+                            <i class="fa fa-edit bigger-150"></i>
                         </button>
                         <button ng-show="col_edit" ng-click="updateColumns()" class="btn-link" data-loading-text="正在保存..." id="colUpdateBtn">
-                            <i class="icon-save bigger-150"></i>
+                            <i class="fa fa-save bigger-150"></i>
                         </button>
                     </div>
                 </td>
@@ -211,10 +234,10 @@
                 <td class="col-sm-5">描述
                     <div style="float: right">
                         <button ng-show="!part_edit" ng-click="part_edit=!part_edit" class="btn-link">
-                            <i class="icon-edit bigger-150"></i>
+                            <i class="fa fa-edit bigger-150"></i>
                         </button>
                         <button ng-show="part_edit" ng-click="updatePartitions()" class="btn-link">
-                            <i class="icon-save bigger-150"></i>
+                            <i class="fa fa-save bigger-150"></i>
                         </button>
                     </div>
                 </td>

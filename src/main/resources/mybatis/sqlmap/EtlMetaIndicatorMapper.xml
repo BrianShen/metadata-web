@@ -1,33 +1,33 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.fanli.metadata.dao.base.EtlMetaIndicatorMapper" >
-  <resultMap id="BaseResultMap" type="com.fanli.metadata.entity.base.EtlMetaIndicator" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="global_id" property="globalId" jdbcType="BIGINT" />
-    <result column="cal_logic" property="calLogic" jdbcType="VARCHAR" />
-    <result column="owner" property="owner" jdbcType="VARCHAR" />
-    <result column="cycle" property="cycle" jdbcType="VARCHAR" />
-    <result column="detail_desc" property="detailDesc" jdbcType="VARCHAR" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fanli.metadata.dao.base.EtlMetaIndicatorMapper">
+  <resultMap id="BaseResultMap" type="com.fanli.metadata.entity.base.EtlMetaIndicator">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="global_id" jdbcType="BIGINT" property="globalId" />
+    <result column="cal_logic" jdbcType="VARCHAR" property="calLogic" />
+    <result column="owner" jdbcType="VARCHAR" property="owner" />
+    <result column="cycle" jdbcType="VARCHAR" property="cycle" />
+    <result column="detail_desc" jdbcType="VARCHAR" property="detailDesc" />
   </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -38,25 +38,25 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -67,40 +67,40 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     id, global_id, cal_logic, owner, cycle, detail_desc
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.fanli.metadata.entity.base.EtlMetaIndicatorExample" >
+  <select id="selectByExample" parameterType="com.fanli.metadata.entity.base.EtlMetaIndicatorExample" resultMap="BaseResultMap">
     select
-    <if test="distinct" >
+    <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
     from etl_meta_indicator
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null" >
+    <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from etl_meta_indicator
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from etl_meta_indicator
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.fanli.metadata.entity.base.EtlMetaIndicatorExample" >
+  <delete id="deleteByExample" parameterType="com.fanli.metadata.entity.base.EtlMetaIndicatorExample">
     delete from etl_meta_indicator
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.fanli.metadata.entity.base.EtlMetaIndicator" >
+  <insert id="insert" parameterType="com.fanli.metadata.entity.base.EtlMetaIndicator">
     insert into etl_meta_indicator (id, global_id, cal_logic, 
       owner, cycle, detail_desc
       )
@@ -108,82 +108,82 @@
       #{owner,jdbcType=VARCHAR}, #{cycle,jdbcType=VARCHAR}, #{detailDesc,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.fanli.metadata.entity.base.EtlMetaIndicator" >
+  <insert id="insertSelective" parameterType="com.fanli.metadata.entity.base.EtlMetaIndicator">
     insert into etl_meta_indicator
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="globalId != null" >
+      <if test="globalId != null">
         global_id,
       </if>
-      <if test="calLogic != null" >
+      <if test="calLogic != null">
         cal_logic,
       </if>
-      <if test="owner != null" >
+      <if test="owner != null">
         owner,
       </if>
-      <if test="cycle != null" >
+      <if test="cycle != null">
         cycle,
       </if>
-      <if test="detailDesc != null" >
+      <if test="detailDesc != null">
         detail_desc,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="globalId != null" >
+      <if test="globalId != null">
         #{globalId,jdbcType=BIGINT},
       </if>
-      <if test="calLogic != null" >
+      <if test="calLogic != null">
         #{calLogic,jdbcType=VARCHAR},
       </if>
-      <if test="owner != null" >
+      <if test="owner != null">
         #{owner,jdbcType=VARCHAR},
       </if>
-      <if test="cycle != null" >
+      <if test="cycle != null">
         #{cycle,jdbcType=VARCHAR},
       </if>
-      <if test="detailDesc != null" >
+      <if test="detailDesc != null">
         #{detailDesc,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.fanli.metadata.entity.base.EtlMetaIndicatorExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.fanli.metadata.entity.base.EtlMetaIndicatorExample" resultType="java.lang.Integer">
     select count(*) from etl_meta_indicator
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
+  <update id="updateByExampleSelective" parameterType="map">
     update etl_meta_indicator
-    <set >
-      <if test="record.id != null" >
+    <set>
+      <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.globalId != null" >
+      <if test="record.globalId != null">
         global_id = #{record.globalId,jdbcType=BIGINT},
       </if>
-      <if test="record.calLogic != null" >
+      <if test="record.calLogic != null">
         cal_logic = #{record.calLogic,jdbcType=VARCHAR},
       </if>
-      <if test="record.owner != null" >
+      <if test="record.owner != null">
         owner = #{record.owner,jdbcType=VARCHAR},
       </if>
-      <if test="record.cycle != null" >
+      <if test="record.cycle != null">
         cycle = #{record.cycle,jdbcType=VARCHAR},
       </if>
-      <if test="record.detailDesc != null" >
+      <if test="record.detailDesc != null">
         detail_desc = #{record.detailDesc,jdbcType=VARCHAR},
       </if>
     </set>
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map" >
+  <update id="updateByExample" parameterType="map">
     update etl_meta_indicator
     set id = #{record.id,jdbcType=INTEGER},
       global_id = #{record.globalId,jdbcType=BIGINT},
@@ -191,32 +191,32 @@
       owner = #{record.owner,jdbcType=VARCHAR},
       cycle = #{record.cycle,jdbcType=VARCHAR},
       detail_desc = #{record.detailDesc,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
+    <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.fanli.metadata.entity.base.EtlMetaIndicator" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.fanli.metadata.entity.base.EtlMetaIndicator">
     update etl_meta_indicator
-    <set >
-      <if test="globalId != null" >
+    <set>
+      <if test="globalId != null">
         global_id = #{globalId,jdbcType=BIGINT},
       </if>
-      <if test="calLogic != null" >
+      <if test="calLogic != null">
         cal_logic = #{calLogic,jdbcType=VARCHAR},
       </if>
-      <if test="owner != null" >
+      <if test="owner != null">
         owner = #{owner,jdbcType=VARCHAR},
       </if>
-      <if test="cycle != null" >
+      <if test="cycle != null">
         cycle = #{cycle,jdbcType=VARCHAR},
       </if>
-      <if test="detailDesc != null" >
+      <if test="detailDesc != null">
         detail_desc = #{detailDesc,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.fanli.metadata.entity.base.EtlMetaIndicator" >
+  <update id="updateByPrimaryKey" parameterType="com.fanli.metadata.entity.base.EtlMetaIndicator">
     update etl_meta_indicator
     set global_id = #{globalId,jdbcType=BIGINT},
       cal_logic = #{calLogic,jdbcType=VARCHAR},

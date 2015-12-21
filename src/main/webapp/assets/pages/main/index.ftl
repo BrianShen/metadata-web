@@ -18,6 +18,7 @@
     <link href="/assets/lib/bootstrap/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/assets/lib/ace/css/ace.min.css">
+    <link rel="stylesheet" href="/assets/css/dialogs.css">
     <#--<link href="/assets/css/ace.min.css" rel="stylesheet"/>-->
 
 
@@ -28,79 +29,110 @@
     <!-- fonts -->
 
     <link rel="stylesheet" href="/assets/lib/ace/css/ace-fonts.css"/>
+    <#--<link rel="stylesheet" href="/assets/lib/ace/fonts/fonts.googleapis.com.css" />-->
 
     <!-- ace styles -->
 
     <#--<link rel="stylesheet" href="/assets/lib/ace/css/ace.min.css"/>-->
-    <#--<link rel="stylesheet" href="/assets/lib/ace/css/ace-rtl.min.css"/>-->
-    <#--<link rel="stylesheet" href="/assets/lib/ace/css/ace-skins.min.css"/>-->
-
+    <link rel="stylesheet" href="/assets/lib/ace/css/ace-rtl.min.css"/>
+    <link rel="stylesheet" href="/assets/lib/ace/css/ace-skins.min.css"/>
 
     <link rel="stylesheet" href="/assets/css/common.css"/>
-    <style type="text/css">
-        body{
-            font-size:14px;
-        }
-    </style>
-
-
-
+    <script src="/assets/lib/ace/js/ace-extra.min.js"></script>
 </head>
 <body ng-app="metaApp">
-    <nav class="navbar navbar-default" id="nav">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">
+<div class="navbar navbar-default" id="navbar">
+    <div class="navbar-container" id="navbar-container">
+        <div class="navbar-header pull-left">
+            <a href="#" class="navbar-brand">
+                <small>
                     <i class="icon-leaf"></i>
-                    主数据</a>
-            </div>
+                    主数据
+                </small>
+            </a><!-- /.brand -->
+        </div><!-- /.navbar-header -->
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="/meta/pages/data_search">数据检索</a></li>
-                    <li>
-                        <a href="http://bidiaodu.office.51fanli.com/" target="_blank">
-                            <span class="menu-text">调度平台</span>
-                        </a>
-                    </li>
-                </ul>
+    </div><!-- /.container -->
+</div>
 
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
-    <div id="main">
-        <div class="container-fluid" style="max-width: 90%">
-            <@content.content></@content.content>
+<div class="main-container" id="main-container">
+
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+
+        <div class="sidebar" id="sidebar">
+            <ul class="nav nav-list">
+                <li class="">
+                    <a href="/meta/pages/data_search">
+                        <i class="glyphicon glyphicon-search"></i>
+                        <span class="menu-text"> 数据检索 </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/meta/pages/atom">
+                        <i class="glyphicon glyphicon-export"></i>
+                        <span class="menu-text"> 指标管理 </span>
+                    </a>
+                </li>
+            </ul><!-- /.nav-list -->
+
         </div>
-    </div>
 
+        <div class="main-content">
+            <@content.top></@content.top>
 
-    <#--<div class="footer">-->
-    <#--<@common.footer/>-->
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                    <@content.content></@content.content>
+                        <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div><!-- /.main-content -->
+
+    </div><!-- /.main-container-inner -->
+
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="icon-double-angle-up icon-only bigger-110"></i>
+    </a>
+</div><!-- /.main-container -->
+    <#--<div id="main">-->
+        <#--<div class="container-fluid" style="max-width: 90%">-->
+            <#--<@content.content></@content.content>-->
+        <#--</div>-->
     <#--</div>-->
-<!-- basic scripts -->
+    <script type="text/javascript" src="/assets/lib/ace/js/jquery-2.0.3.min.js"></script>
 
-<script type="text/javascript" src="/assets/lib/ace/js/jquery-2.0.3.min.js"></script>
-<script src="/assets/lib/bootstrap/bootstrap.min.js"></script>
     <!-- ace scripts -->
     <script src="/assets/lib/ace/js/ace-elements.min.js"></script>
     <script src="/assets/lib/ace/js/ace.min.js"></script>
+
+<script src="/assets/lib/bootstrap/bootstrap.min.js"></script>
 <script src="/assets/lib/typeahead/typeahead.bundle.min.js"></script>
 
 
 <script src="/assets/lib/angular.min.js"></script>
 <script src="/assets/lib/angular-resource.min.js"></script>
+<script src="/assets/lib/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="/assets/lib/angular-translate/angular-translate.min.js"></script>
 <script src="/assets/lib/ui-bootstrap-tpls.js"></script>
+<script src="/assets/lib/dialogs.js"></script>
+<script src="/assets/js/app.js"></script>
 <script src="/assets/lib/d3.v3.min.js"></script>
 <script type="text/javascript" src="/assets/lib/jquery.pagination.js"></script>
 
-<script src="/assets/js/app.js"></script>
+
 
 <script src="/assets/js/controller/sidebarCtrl.js"></script>
-    <script src="/assets/js/service/restful_service.js"></script>
-    <script src="/assets/js/service/common_service.js"></script>
+<script src="/assets/js/service/restful_service.js"></script>
+<script src="/assets/js/service/common_service.js"></script>
+<script src="/assets/js/service/constant_service.js"></script>
+
 
 
 <script src="/assets/js/commonjs/search.js"></script>

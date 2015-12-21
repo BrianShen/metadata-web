@@ -108,4 +108,8 @@
     (#{tableName},#{owner},#{developer},#{storageType},#{tableComment},#{refreshCycle},#{status},#{addTime})
   </insert>
 
+  <delete id="removeRecordByGlobalId" parameterType="java.lang.Long">
+    DELETE FROM etl_meta_table_base where global_table_id=#{globalId}
+  </delete>
+
 </mapper>

@@ -3,6 +3,9 @@
  */
 
 var metaApp = angular.module("metaApp", [
-    'ngResource'
+    'ngResource',
+    'ui.bootstrap',
+    'constant.service',
+    'dialogs.main','pascalprecht.translate'
 ]);
 

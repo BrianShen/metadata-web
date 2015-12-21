@@ -1,3 +1,28 @@
+<#macro top>
+<div class="breadcrumbs" id="breadcrumbs">
+    <script type="text/javascript">
+        try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="#">Home</a>
+        </li>
+        <li class="active">Search</li>
+    </ul><!-- .breadcrumb -->
+
+    <div class="nav-search" id="nav-search">
+        <form class="form-search">
+                        <span class="input-icon">
+                            <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                            <i class="icon-search nav-search-icon"></i>
+                        </span>
+        </form>
+    </div><!-- #nav-search -->
+</div>
+</#macro>
+
 <#macro content>
 <div style="margin: 20px" class="main">
     <#--<form  role="search" >-->
@@ -18,7 +43,7 @@
             <div class="navbar-form navbar-form-custom input-group" >
                 <div class="search-group">
                     <input type="text" required id="search-input" class="form-control search-input-width typeahead"
-                           placeholder="表名" >
+                           placeholder="表名/指标名" >
                     <button type="submit" id="search-btn" class="btn btn-sm btn-primary btn-location" data-loading-text="正在查询...">查询
                         <i class="icon-search icon-on-right bigger-110"></i>
                     </button>
